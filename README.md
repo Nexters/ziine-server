@@ -10,7 +10,7 @@
 
 #### ORM - <img src="https://img.shields.io/badge/Spring Data JPA-6DB33F?style=for-the-social&logo=Databricks&logoColor=white">
 
-#### Database - <img src="https://img.shields.io/badge/MySQL-4479A1.svg?style=for-the-social&logo=MySQL&logoColor=white">  <img src="https://img.shields.io/badge/MongoDB-234ea94b.svg?logo=mongodb&logoColor=white&style=for-the-social">
+#### Database - <img src="https://img.shields.io/badge/MySQL-4479A1.svg?style=for-the-social&logo=MySQL&logoColor=white"> 
 
 #### AWS - <img src ="https://img.shields.io/badge/AWS EC2-FF9900?style=for-the-social&logo=amazonec2&logoColor=white">  <img src ="https://img.shields.io/badge/AWS S3-69A31?style=for-the-social&logo=amazons3&logoColor=white">  <img src="https://img.shields.io/badge/AWS RDS-527FFF?style=for-the-social&logo=amazonrds&logoColor=white">  <img src ="https://img.shields.io/badge/AWS Cloud Watch-FF4F8B?style=for-the-social&logo=amazoncloudwatch&logoColor=white">
 
