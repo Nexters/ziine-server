@@ -8,4 +8,9 @@ import lombok.Getter;
 public class BusinessException extends RuntimeException {
 
     private ErrorCode errorCode;
+
+    @Override
+    public synchronized Throwable fillInStackTrace() {
+        return this;
+    }
 }
