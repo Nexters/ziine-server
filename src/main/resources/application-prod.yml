@@ -14,3 +14,4 @@ spring:
         order_inserts: true
         order_updates: true
         format_sql: true
+    open-in-view: false
