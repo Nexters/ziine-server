@@ -1,4 +1,4 @@
-package com.example.ziine.common.entity;
+package com.ziine.common.entity;
 
 import jakarta.persistence.*;
 import java.time.ZonedDateTime;

@@ -1,6 +1,6 @@
-package com.example.ziine.common.dto;
+package com.ziine.common.dto;
 
-import com.example.ziine.common.exception.ErrorCode;
+import com.ziine.common.exception.ErrorCode;
 
 public record ErrorResponseDto(int code, String message) {
 

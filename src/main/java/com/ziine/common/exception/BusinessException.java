@@ -1,4 +1,4 @@
-package com.example.ziine.common.exception;
+package com.ziine.common.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

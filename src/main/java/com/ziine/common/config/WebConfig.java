@@ -1,4 +1,4 @@
-package com.example.ziine.common.config;
+package com.ziine.common.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;

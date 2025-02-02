@@ -1,4 +1,4 @@
-package com.example.ziine.external.swagger.config;
+package com.ziine.external.swagger.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;

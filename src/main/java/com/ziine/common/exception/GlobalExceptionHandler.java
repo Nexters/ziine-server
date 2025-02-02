@@ -1,6 +1,6 @@
-package com.example.ziine.common.exception;
+package com.ziine.common.exception;
 
-import com.example.ziine.common.dto.ErrorResponseDto;
+import com.ziine.common.dto.ErrorResponseDto;
 import jakarta.annotation.Nullable;
 import jakarta.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
