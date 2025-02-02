@@ -4,7 +4,7 @@ import com.example.ziine.common.exception.ErrorCode;
 
 public record ErrorResponseDto(int code, String message) {
 
-    public ErrorResponseDto(ErrorCode errorCode) {
+    public ErrorResponseDto(final ErrorCode errorCode) {
         this(errorCode.getCode(), errorCode.getMessage());
     }
 }
