@@ -45,8 +45,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             .body(new ErrorResponseDto(e.getErrorCode()));
     }
 
-    @ExceptionHandler(value = {Exception.class, RuntimeException.class, SQLException.class,
-        DataIntegrityViolationException.class})
+    @ExceptionHandler(value = {Exception.class})
     protected ResponseEntity<ErrorResponseDto> handleInternalException(
         final Exception e,
         final HttpServletRequest request
