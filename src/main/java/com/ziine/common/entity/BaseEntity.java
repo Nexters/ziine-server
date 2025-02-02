@@ -27,4 +27,3 @@ public class BaseEntity {
         this.modifiedAt = ZonedDateTime.now();
     }
 }
-
