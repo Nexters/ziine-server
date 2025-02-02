@@ -46,7 +46,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(value = {Exception.class})
-    protected ResponseEntity<ErrorResponseDto> handleInternalException(
+    private ResponseEntity<ErrorResponseDto> handleInternalException(
         final Exception e,
         final HttpServletRequest request
     ) {
