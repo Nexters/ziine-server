@@ -35,7 +35,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(BusinessException.class)
-    protected ResponseEntity<ErrorResponseDto> handleBusinessException(
+    private ResponseEntity<ErrorResponseDto> handleBusinessException(
         final BusinessException e,
         final HttpServletRequest request
     ) {
