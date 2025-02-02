@@ -7,5 +7,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public class BusinessException extends RuntimeException {
 
-    private ErrorCode errorCode;
+    private final ErrorCode errorCode;
 }
