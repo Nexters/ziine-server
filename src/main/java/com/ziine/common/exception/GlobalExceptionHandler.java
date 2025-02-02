@@ -22,7 +22,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
-    protected ResponseEntity<Object> createResponseEntity(@Nullable Object body, HttpHeaders headers,
+    public ResponseEntity<Object> createResponseEntity(@Nullable Object body, HttpHeaders headers,
                                                           HttpStatusCode statusCode, WebRequest request) {
         if (body instanceof ProblemDetail problemDetail) {
             log.warn("ProblemDetail: {}", problemDetail);
@@ -35,7 +35,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(BusinessException.class)
-    private ResponseEntity<ErrorResponseDto> handleBusinessException(
+    public ResponseEntity<ErrorResponseDto> handleBusinessException(
         final BusinessException e,
         final HttpServletRequest request
     ) {
@@ -46,7 +46,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(value = {Exception.class})
-    private ResponseEntity<ErrorResponseDto> handleInternalException(
+    public ResponseEntity<ErrorResponseDto> handleInternalException(
         final Exception e,
         final HttpServletRequest request
     ) {
