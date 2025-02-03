@@ -45,11 +45,11 @@ public class ArtworkStatusHistory {
     private Long artworkId;
 
     public ArtworkStatusHistory(
-            final ArtworkStatus fromStatus,
-            final ArtworkStatus toStatus,
-            final String rejectionReason,
-            final String changedBy,
-            final Long artworkId
+        final ArtworkStatus fromStatus,
+        final ArtworkStatus toStatus,
+        final String rejectionReason,
+        final String changedBy,
+        final Long artworkId
     ) {
         this.fromStatus = fromStatus;
         this.toStatus = toStatus;

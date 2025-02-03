@@ -31,9 +31,9 @@ public class Artist {
     private String email;
 
     public Artist(
-            final String name,
-            final String imageUrl,
-            final String email
+        final String name,
+        final String imageUrl,
+        final String email
     ) {
         this.name = name;
         this.imageUrl = imageUrl;

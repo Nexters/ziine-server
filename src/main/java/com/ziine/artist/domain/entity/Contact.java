@@ -34,9 +34,9 @@ public class Contact {
     private Long artistId;
 
     public Contact(
-            final ContactType type,
-            final String value,
-            final Long artistId
+        final ContactType type,
+        final String value,
+        final Long artistId
     ) {
         this.type = type;
         this.value = value;

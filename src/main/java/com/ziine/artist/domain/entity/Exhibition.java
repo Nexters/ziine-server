@@ -32,9 +32,9 @@ public class Exhibition {
     private Long artistId;
 
     public Exhibition(
-            final String title,
-            final LocalDate exhibitionDate,
-            final Long artistId
+        final String title,
+        final LocalDate exhibitionDate,
+        final Long artistId
     ) {
         this.title = title;
         this.exhibitionDate = exhibitionDate;

@@ -28,8 +28,8 @@ public class Education {
     private Long artistId;
 
     public Education(
-            final String tag,
-            final Long artistId
+        final String tag,
+        final Long artistId
     ) {
         this.tag = tag;
         this.artistId = artistId;

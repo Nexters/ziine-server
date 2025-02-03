@@ -50,13 +50,13 @@ public class Artwork extends BaseEntity {
     private Long artistId;
 
     public Artwork(
-            final String title,
-            final String description,
-            final String imageUrl,
-            final String material,
-            final int sizeWidth,
-            final int sizeHeight,
-            final Long artistId
+        final String title,
+        final String description,
+        final String imageUrl,
+        final String material,
+        final int sizeWidth,
+        final int sizeHeight,
+        final Long artistId
     ) {
         this.title = title;
         this.description = description;

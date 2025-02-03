@@ -9,25 +9,13 @@ public enum ErrorCode {
     /**
      * 1XXX -> Common 에러
      */
-    INTERNAL_SERVER_ERROR(
-            1000,
-            "Internal Server Error",
-            HttpStatus.INTERNAL_SERVER_ERROR
-    ),
-    BAD_REQUEST(
-            1001,
-            "Bad Request",
-            HttpStatus.BAD_REQUEST
-    ),
+    INTERNAL_SERVER_ERROR(1000, "Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR),
+    BAD_REQUEST(1001, "Bad Request", HttpStatus.BAD_REQUEST),
 
     /**
      * 2XXX -> Artwork 에러
      */
-    ARTWORK_NOT_FOUND(
-            2001,
-            "Artwork Not Found",
-            HttpStatus.BAD_REQUEST
-    ),
+    ARTWORK_NOT_FOUND(2001, "Artwork Not Found", HttpStatus.BAD_REQUEST),
     ;
 
     private final int code;
@@ -35,9 +23,9 @@ public enum ErrorCode {
     private final HttpStatus httpStatus;
 
     ErrorCode(
-            final int code,
-            final String message,
-            final HttpStatus httpStatus
+        final int code,
+        final String message,
+        final HttpStatus httpStatus
     ) {
         this.code = code;
         this.message = message;

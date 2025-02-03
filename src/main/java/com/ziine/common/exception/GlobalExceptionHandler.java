@@ -24,97 +24,67 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
-            final MethodArgumentNotValidException e,
-            final HttpHeaders headers,
-            final HttpStatusCode statusCode,
-            final WebRequest request
+        final MethodArgumentNotValidException e,
+        final HttpHeaders headers,
+        final HttpStatusCode statusCode,
+        final WebRequest request
     ) {
         final String message = e.getBindingResult()
-                .getAllErrors()
-                .stream()
-                .map(DefaultMessageSourceResolvable::getDefaultMessage)
-                .collect(Collectors.joining(", "));
+            .getAllErrors()
+            .stream()
+            .map(DefaultMessageSourceResolvable::getDefaultMessage)
+            .collect(Collectors.joining(", "));
 
-        final ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
-                statusCode,
-                message
-        );
+        final ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(statusCode, message);
 
-        return handleExceptionInternal(
-                e,
-                problemDetail,
-                headers,
-                statusCode,
-                request
-        );
+        return handleExceptionInternal(e, problemDetail, headers, statusCode, request);
     }
 
     @Override
     public ResponseEntity<Object> createResponseEntity(
-            @Nullable Object body,
-            HttpHeaders headers,
-            HttpStatusCode statusCode,
-            WebRequest request
+        final @Nullable Object body,
+        final HttpHeaders headers,
+        final HttpStatusCode statusCode,
+        final WebRequest request
     ) {
         if (body instanceof ProblemDetail problemDetail) {
-            log.info(
-                    "[CommonException] URI: {}, Status: {}, Message: {}",
-                    request.getDescription(false),
-                    statusCode,
-                    problemDetail.getDetail()
-            );
+            log.info("[CommonException] URI: {}, Status: {}, Message: {}",
+                request.getDescription(false), statusCode, problemDetail.getDetail());
 
             return ResponseEntity.status(statusCode)
-                    .body(new ErrorResponseDto(
-                            ErrorCode.BAD_REQUEST.getCode(),
-                            problemDetail.getDetail()
-                    ));
+                .body(new ErrorResponseDto(ErrorCode.BAD_REQUEST.getCode(), problemDetail.getDetail()));
         }
-        log.error(
-                "[UnexpectedException] URI: {}, Message: {}",
-                request.getDescription(false),
-                body
-        );
+        log.error("[UnexpectedException] URI: {}, Message: {}", request.getDescription(false), body);
 
         return ResponseEntity.status(ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus())
-                .body(new ErrorResponseDto(
-                        ErrorCode.INTERNAL_SERVER_ERROR.getCode(),
-                        ErrorCode.INTERNAL_SERVER_ERROR.getMessage()
-                ));
+            .body(new ErrorResponseDto(
+                ErrorCode.INTERNAL_SERVER_ERROR.getCode(), ErrorCode.INTERNAL_SERVER_ERROR.getMessage()));
     }
 
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<ErrorResponseDto> handleBusinessException(
-            final BusinessException e,
-            final HttpServletRequest request
+        final BusinessException e,
+        final HttpServletRequest request
     ) {
-        log.info(
-                "[BusinessException] URI: {}, Code: {}, Message: {}",
-                request.getRequestURI(),
-                e.getErrorCode()
-                        .getCode(),
-                e.getMessage()
+        log.info("[BusinessException] URI: {}, Code: {}, Message: {}",
+            request.getRequestURI(), e.getErrorCode()
+                .getCode(), e.getMessage()
         );
 
-        return ResponseEntity
-                .status(e.getErrorCode()
-                                .getHttpStatus())
-                .body(new ErrorResponseDto(e.getErrorCode()));
+        return ResponseEntity.status(e.getErrorCode()
+                .getHttpStatus())
+            .body(new ErrorResponseDto(e.getErrorCode()));
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDto> handleInternalException(
-            final Exception e,
-            final HttpServletRequest request
+        final Exception e,
+        final HttpServletRequest request
     ) {
-        log.error(
-                "[UnexpectedException] URI: {}, Message: {}",
-                request.getRequestURI(),
-                e.getMessage()
-        );
+        log.error("[UnexpectedException] URI: {}, Message: {}",
+            request.getRequestURI(), e.getMessage());
 
-        return ResponseEntity
-                .status(ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus())
-                .body(new ErrorResponseDto(ErrorCode.INTERNAL_SERVER_ERROR));
+        return ResponseEntity.status(ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus())
+            .body(new ErrorResponseDto(ErrorCode.INTERNAL_SERVER_ERROR));
     }
 }
