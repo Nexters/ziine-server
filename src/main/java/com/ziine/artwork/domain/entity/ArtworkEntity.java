@@ -1,14 +1,20 @@
 package com.ziine.artwork.domain.entity;
 
+import com.ziine.artist.domain.entity.ArtistEntity;
 import com.ziine.common.entity.BaseEntity;
 import jakarta.persistence.Column;
+import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -44,24 +50,24 @@ public class ArtworkEntity extends BaseEntity {
     @Column(nullable = false, length = 20)
     private ArtworkStatus status;
 
-    @Column(nullable = false)
-    private Long artistId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "artist_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
+    private ArtistEntity artist;
 
     public ArtworkEntity(
         final String title,
         final String description,
         final String imageUrl,
         final String material,
-        final int sizeWidth,
-        final int sizeHeight,
-        final Long artistId
+        final Size size,
+        final ArtistEntity artist
     ) {
         this.title = title;
         this.description = description;
         this.imageUrl = imageUrl;
         this.material = material;
-        this.size = new Size(sizeWidth, sizeHeight);
-        this.artistId = artistId;
+        this.size = size;
+        this.artist = artist;
         this.status = ArtworkStatus.PENDING;
     }
 

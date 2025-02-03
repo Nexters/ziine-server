@@ -1,10 +1,15 @@
 package com.ziine.artist.domain.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
 import lombok.AccessLevel;
@@ -28,16 +33,17 @@ public class ExhibitionEntity {
     @Column(nullable = false)
     private LocalDate exhibitionDate;
 
-    @Column(nullable = false)
-    private Long artistId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "artist_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
+    private ArtistEntity artist;
 
     public ExhibitionEntity(
         final String title,
         final LocalDate exhibitionDate,
-        final Long artistId
+        final ArtistEntity artist
     ) {
         this.title = title;
         this.exhibitionDate = exhibitionDate;
-        this.artistId = artistId;
+        this.artist = artist;
     }
 }

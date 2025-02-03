@@ -1,12 +1,17 @@
 package com.ziine.artist.domain.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -30,16 +35,17 @@ public class ContactEntity {
     @Column(nullable = false, length = 255)
     private String value;
 
-    @Column(nullable = false)
-    private Long artistId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "artist_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
+    private ArtistEntity artist;
 
     public ContactEntity(
         final ContactType type,
         final String value,
-        final Long artistId
+        final ArtistEntity artist
     ) {
         this.type = type;
         this.value = value;
-        this.artistId = artistId;
+        this.artist = artist;
     }
 }
