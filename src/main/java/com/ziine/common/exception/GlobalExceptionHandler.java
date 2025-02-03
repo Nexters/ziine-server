@@ -20,8 +20,12 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
-    public ResponseEntity<Object> createResponseEntity(@Nullable Object body, HttpHeaders headers,
-                                                       HttpStatusCode statusCode, WebRequest request) {
+    public ResponseEntity<Object> createResponseEntity(
+            @Nullable Object body,
+            HttpHeaders headers,
+            HttpStatusCode statusCode,
+            WebRequest request
+    ) {
         if (body instanceof ProblemDetail problemDetail) {
             log.warn("ProblemDetail: {}", problemDetail);
             return ResponseEntity.status(statusCode)
@@ -34,8 +38,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(BusinessException.class)
-    public ResponseEntity<ErrorResponseDto> handleBusinessException(final BusinessException e,
-                                                                    final HttpServletRequest request) {
+    public ResponseEntity<ErrorResponseDto> handleBusinessException(
+            final BusinessException e,
+            final HttpServletRequest request
+    ) {
         log.error("BusinessException: {} Request Url: {}", e.getErrorCode(), request.getRequestURL());
         return ResponseEntity
                 .status(e.getErrorCode().getHttpStatus().value())
@@ -43,8 +49,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponseDto> handleInternalException(final Exception e,
-                                                                    final HttpServletRequest request) {
+    public ResponseEntity<ErrorResponseDto> handleInternalException(
+            final Exception e,
+            final HttpServletRequest request
+    ) {
         log.error("Request URL: {}", request.getRequestURL(), e);
         return ResponseEntity
                 .status(ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus().value())
