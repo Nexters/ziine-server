@@ -4,6 +4,8 @@ spring:
     url: jdbc:mysql://localhost:33306/ziine?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
     username: root
     password: password
+    hikari:
+      auto-commit: false
 
   jpa:
     generate-ddl: true
@@ -15,4 +17,5 @@ spring:
         order_inserts: true
         order_updates: true
         format_sql: true
+        query.fail_on_pagination_over_collection_fetch: true
     open-in-view: false
