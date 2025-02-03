@@ -15,7 +15,7 @@ public enum ErrorCode {
     /**
      * 2XXX -> Artwork 에러
      */
-    ARTWORK_NOT_FOUND(2001, "Artwork Not Found", HttpStatus.BAD_REQUEST),
+    ARTWORK_NOT_FOUND(2001, "Artwork Not Found", HttpStatus.NOT_FOUND),
     ;
 
     private final int code;
