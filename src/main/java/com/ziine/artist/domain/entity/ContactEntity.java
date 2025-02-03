@@ -2,6 +2,8 @@ package com.ziine.artist.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,25 +15,31 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "education")
-public class Education {
+@Table(name = "contact")
+public class ContactEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "education_id")
+    @Column(name = "contact_id")
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
-    private String tag;
+    private ContactType type;
+
+    @Column(nullable = false, length = 255)
+    private String value;
 
     @Column(nullable = false)
     private Long artistId;
 
-    public Education(
-        final String tag,
+    public ContactEntity(
+        final ContactType type,
+        final String value,
         final Long artistId
     ) {
-        this.tag = tag;
+        this.type = type;
+        this.value = value;
         this.artistId = artistId;
     }
 }

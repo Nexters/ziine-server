@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "artwork_status_history")
-public class ArtworkStatusHistory {
+public class ArtworkStatusHistoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,7 +44,7 @@ public class ArtworkStatusHistory {
     @Column(nullable = false)
     private Long artworkId;
 
-    public ArtworkStatusHistory(
+    public ArtworkStatusHistoryEntity(
         final ArtworkStatus fromStatus,
         final ArtworkStatus toStatus,
         final String rejectionReason,

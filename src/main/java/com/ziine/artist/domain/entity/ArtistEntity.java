@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "artist")
-public class Artist {
+public class ArtistEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +30,7 @@ public class Artist {
     @Column(length = 255)
     private String email;
 
-    public Artist(
+    public ArtistEntity(
         final String name,
         final String imageUrl,
         final String email

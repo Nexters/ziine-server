@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "artwork")
-public class Artwork extends BaseEntity {
+public class ArtworkEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,7 +47,7 @@ public class Artwork extends BaseEntity {
     @Column(nullable = false)
     private Long artistId;
 
-    public Artwork(
+    public ArtworkEntity(
         final String title,
         final String description,
         final String imageUrl,

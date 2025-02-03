@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "exhibition")
-public class Exhibition {
+public class ExhibitionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +31,7 @@ public class Exhibition {
     @Column(nullable = false)
     private Long artistId;
 
-    public Exhibition(
+    public ExhibitionEntity(
         final String title,
         final LocalDate exhibitionDate,
         final Long artistId
