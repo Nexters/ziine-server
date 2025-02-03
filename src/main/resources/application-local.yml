@@ -18,4 +18,9 @@ spring:
         order_updates: true
         format_sql: true
         query.fail_on_pagination_over_collection_fetch: true
+        detector:
+          enabled: true
+          threshold: 2
+          level: warn
+          exclude:
     open-in-view: false
