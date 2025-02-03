@@ -9,15 +9,15 @@ public enum ErrorCode {
     /**
      * 1XXX -> Common 에러
      */
-    BAD_REQUEST(
-            1000,
-            "Bad Request",
-            HttpStatus.BAD_REQUEST
-    ),
     INTERNAL_SERVER_ERROR(
-            1001,
+            1000,
             "Internal Server Error",
             HttpStatus.INTERNAL_SERVER_ERROR
+    ),
+    BAD_REQUEST(
+            1001,
+            "Bad Request",
+            HttpStatus.BAD_REQUEST
     ),
 
     /**
