@@ -2,6 +2,7 @@ package com.ziine.artwork.domain.entity;
 
 import com.ziine.common.entity.BaseEntity;
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -36,11 +37,8 @@ public class Artwork extends BaseEntity {
     @Column(nullable = false, length = 50)
     private String material;
 
-    @Column(nullable = false, columnDefinition = "SMALLINT UNSIGNED")
-    private int sizeWidth;
-
-    @Column(nullable = false, columnDefinition = "SMALLINT UNSIGNED")
-    private int sizeHeight;
+    @Embedded
+    private Size size;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
@@ -62,8 +60,7 @@ public class Artwork extends BaseEntity {
         this.description = description;
         this.imageUrl = imageUrl;
         this.material = material;
-        this.sizeWidth = sizeWidth;
-        this.sizeHeight = sizeHeight;
+        this.size = new Size(sizeWidth, sizeHeight);
         this.artistId = artistId;
         this.status = ArtworkStatus.PENDING;
     }
