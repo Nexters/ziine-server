@@ -1,4 +1,4 @@
-package com.ziine.artwork.domain.entity;
+package com.ziine.domains.artwork.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;

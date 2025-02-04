@@ -1,6 +1,6 @@
-package com.ziine.artwork.domain.entity;
+package com.ziine.domains.artwork.domain.entity;
 
-import com.ziine.artist.domain.entity.ArtistEntity;
+import com.ziine.domains.artist.domain.entity.ArtistEntity;
 import com.ziine.common.entity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;

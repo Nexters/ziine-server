@@ -1,4 +1,4 @@
-package com.ziine.artist.domain.entity;
+package com.ziine.domains.artist.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.LocalDate;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,26 +19,31 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "education")
-public class EducationEntity {
+@Table(name = "exhibition")
+public class ExhibitionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "education_id")
+    @Column(name = "exhibition_id")
     private Long id;
 
-    @Column(nullable = false, length = 20)
-    private String tag;
+    @Column(nullable = false, length = 80)
+    private String title;
+
+    @Column(nullable = false)
+    private LocalDate exhibitionDate;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "artist_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
     private ArtistEntity artist;
 
-    public EducationEntity(
-        final String tag,
+    public ExhibitionEntity(
+        final String title,
+        final LocalDate exhibitionDate,
         final ArtistEntity artist
     ) {
-        this.tag = tag;
+        this.title = title;
+        this.exhibitionDate = exhibitionDate;
         this.artist = artist;
     }
 }
