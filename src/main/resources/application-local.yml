@@ -1,21 +1,26 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:mysql://localhost:33306/ziine?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: password
     hikari:
       auto-commit: false
 
   jpa:
-    generate-ddl: false
+    generate-ddl: true
     hibernate:
       ddl-auto: update
-    show-sql: false
+    show-sql: true
     properties:
       hibernate:
         order_inserts: true
         order_updates: true
         format_sql: true
         query.fail_on_pagination_over_collection_fetch: true
+        detector:
+          enabled: true
+          threshold: 2
+          level: warn
+          exclude:
     open-in-view: false
