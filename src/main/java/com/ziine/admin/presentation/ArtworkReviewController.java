@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/admin/v1/artworks")
 @RequiredArgsConstructor
+@RequestMapping("/admin/v1/artworks")
+@RestController
 public class ArtworkReviewController {
 
     private final ArtworkReviewService artworkReviewService;
