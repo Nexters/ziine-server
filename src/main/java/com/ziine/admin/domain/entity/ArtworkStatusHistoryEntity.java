@@ -1,5 +1,7 @@
-package com.ziine.artwork.domain.entity;
+package com.ziine.admin.domain.entity;
 
+import com.ziine.artwork.domain.entity.ArtworkEntity;
+import com.ziine.artwork.domain.entity.ArtworkStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
@@ -30,7 +32,7 @@ public class ArtworkStatusHistoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "history_id")
+    @Column(name = "artwork_status_history_id")
     private Long id;
 
     @Enumerated(EnumType.STRING)
