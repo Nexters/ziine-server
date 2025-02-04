@@ -30,7 +30,7 @@ public class ArtworkStatusHistoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "history_id")
+    @Column(name = "artwork_status_history_id")
     private Long id;
 
     @Enumerated(EnumType.STRING)
