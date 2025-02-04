@@ -33,4 +33,20 @@ public class ArtworkReviewService { // TODO. 추후 Spring Event 방식으로 �
         ));
     }
 
+    @Transactional
+    public void rejectArtwork(
+        final Long artworkId,
+        final ArtworkRejectRequestDto artworkRejectRequestDto
+    ) {
+        final ArtworkEntity artworkEntity = artworkRepository.findById(artworkId)
+            .orElseThrow(
+                () -> new BusinessException(ErrorCode.ARTWORK_NOT_FOUND)); // TODO. ArtworkNotFoundException 으로 변경
+
+        final ArtworkStatus fromStatus = artworkEntity.getStatus();
+        artworkEntity.updateStatus(ArtworkStatus.REJECTED);
+
+        artworkStatusHistoryRepository.save(new ArtworkStatusHistoryEntity(
+            fromStatus, ArtworkStatus.REJECTED, artworkRejectRequestDto.rejectionReason(), "TODO", artworkEntity
+        ));
+    }
 }

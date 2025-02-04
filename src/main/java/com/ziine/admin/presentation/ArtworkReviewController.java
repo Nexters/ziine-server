@@ -24,4 +24,14 @@ public class ArtworkReviewController {
         return ResponseEntity.noContent()
             .build();
     }
+
+    @PatchMapping("/{artworkId}/reject")
+    public ResponseEntity<Void> rejectArtwork(
+        final @PathVariable Long artworkId,
+        final @Valid @RequestBody ArtworkRejectRequestDto artworkRejectRequestDto
+    ) {
+        artworkReviewService.rejectArtwork(artworkId, artworkRejectRequestDto);
+        return ResponseEntity.noContent()
+            .build();
+    }
 }
