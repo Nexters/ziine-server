@@ -25,7 +25,7 @@ public class ArtistEntity {
     private String name;
 
     @Column(nullable = false, length = 255)
-    private String imageUrl;
+    private String profileImageUrl;
 
     @Column(length = 255)
     private String email;
