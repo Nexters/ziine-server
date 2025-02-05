@@ -1,6 +1,6 @@
 package com.ziine.admin.application;
 
-import com.ziine.admin.application.dto.request.ArtworkRejectRequestDto;
+import com.ziine.admin.application.dto.request.AdminArtworkRejectRequestDto;
 import com.ziine.admin.domain.entity.ArtworkStatusHistoryEntity;
 import com.ziine.admin.domain.repository.ArtworkStatusHistoryRepository;
 import com.ziine.artwork.domain.entity.ArtworkEntity;
@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
-public class ArtworkReviewService { // TODO. 추후 Spring Event 방식으로 변경하여 상태 변경을 저장하는 보조 관심사 분리
+public class AdminArtworkReviewService { // TODO. 추후 Spring Event 방식으로 변경하여 상태 변경을 저장하는 보조 관심사 분리
 
     private final ArtworkRepository artworkRepository;
     private final ArtworkStatusHistoryRepository artworkStatusHistoryRepository;
@@ -36,7 +36,7 @@ public class ArtworkReviewService { // TODO. 추후 Spring Event 방식으로 �
     @Transactional
     public void rejectArtwork(
         final Long artworkId,
-        final ArtworkRejectRequestDto artworkRejectRequestDto
+        final AdminArtworkRejectRequestDto adminArtworkRejectRequestDto
     ) {
         final ArtworkEntity artworkEntity = artworkRepository.findById(artworkId)
             .orElseThrow(
@@ -46,7 +46,7 @@ public class ArtworkReviewService { // TODO. 추후 Spring Event 방식으로 �
         artworkEntity.updateStatus(ArtworkStatus.REJECTED);
 
         artworkStatusHistoryRepository.save(new ArtworkStatusHistoryEntity(
-            fromStatus, ArtworkStatus.REJECTED, artworkRejectRequestDto.rejectionReason(), "TODO", artworkEntity
+            fromStatus, ArtworkStatus.REJECTED, adminArtworkRejectRequestDto.rejectionReason(), "TODO", artworkEntity
         ));
     }
 }

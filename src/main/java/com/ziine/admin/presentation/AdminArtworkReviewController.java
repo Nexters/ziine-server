@@ -1,7 +1,7 @@
 package com.ziine.admin.presentation;
 
-import com.ziine.admin.application.ArtworkReviewService;
-import com.ziine.admin.application.dto.request.ArtworkRejectRequestDto;
+import com.ziine.admin.application.AdminArtworkReviewService;
+import com.ziine.admin.application.dto.request.AdminArtworkRejectRequestDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/admin/v1/artworks")
 @RestController
-public class ArtworkReviewController {
+public class AdminArtworkReviewController {
 
-    private final ArtworkReviewService artworkReviewService;
+    private final AdminArtworkReviewService adminArtworkReviewService;
 
     @PatchMapping("/{artworkId}/approve")
     public ResponseEntity<Void> approveArtwork(final @PathVariable Long artworkId) {
-        artworkReviewService.approveArtwork(artworkId);
+        adminArtworkReviewService.approveArtwork(artworkId);
         return ResponseEntity.noContent()
             .build();
     }
@@ -28,9 +28,9 @@ public class ArtworkReviewController {
     @PatchMapping("/{artworkId}/reject")
     public ResponseEntity<Void> rejectArtwork(
         final @PathVariable Long artworkId,
-        final @Valid @RequestBody ArtworkRejectRequestDto artworkRejectRequestDto
+        final @Valid @RequestBody AdminArtworkRejectRequestDto adminArtworkRejectRequestDto
     ) {
-        artworkReviewService.rejectArtwork(artworkId, artworkRejectRequestDto);
+        adminArtworkReviewService.rejectArtwork(artworkId, adminArtworkRejectRequestDto);
         return ResponseEntity.noContent()
             .build();
     }
