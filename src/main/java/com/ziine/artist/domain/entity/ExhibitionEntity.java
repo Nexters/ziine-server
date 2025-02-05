@@ -35,15 +35,15 @@ public class ExhibitionEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "artist_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
-    private ArtistEntity artist;
+    private ArtistEntity artistEntity;
 
     public ExhibitionEntity(
         final String title,
         final LocalDate exhibitionDate,
-        final ArtistEntity artist
+        final ArtistEntity artistEntity
     ) {
         this.title = title;
         this.exhibitionDate = exhibitionDate;
-        this.artist = artist;
+        this.artistEntity = artistEntity;
     }
 }

@@ -54,20 +54,20 @@ public class ArtworkStatusHistoryEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "artwork_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
-    private ArtworkEntity artwork;
+    private ArtworkEntity artworkEntity;
 
     public ArtworkStatusHistoryEntity(
         final ArtworkStatus fromStatus,
         final ArtworkStatus toStatus,
         final String rejectionReason,
         final String changedBy,
-        final ArtworkEntity artwork
+        final ArtworkEntity artworkEntity
     ) {
         this.fromStatus = fromStatus;
         this.toStatus = toStatus;
         this.rejectionReason = rejectionReason;
         this.changedBy = changedBy;
-        this.artwork = artwork;
+        this.artworkEntity = artworkEntity;
     }
 
     @PrePersist

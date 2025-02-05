@@ -44,7 +44,7 @@ public class ArtworkEntity extends BaseEntity {
     private String material;
 
     @Embedded
-    private Size size;
+    private SizeAttribute sizeAttribute;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
@@ -52,22 +52,22 @@ public class ArtworkEntity extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "artist_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
-    private ArtistEntity artist;
+    private ArtistEntity artistEntity;
 
     public ArtworkEntity(
         final String title,
         final String description,
         final String imageUrl,
         final String material,
-        final Size size,
-        final ArtistEntity artist
+        final SizeAttribute sizeAttribute,
+        final ArtistEntity artistEntity
     ) {
         this.title = title;
         this.description = description;
         this.imageUrl = imageUrl;
         this.material = material;
-        this.size = size;
-        this.artist = artist;
+        this.sizeAttribute = sizeAttribute;
+        this.artistEntity = artistEntity;
         this.status = ArtworkStatus.PENDING;
     }
 

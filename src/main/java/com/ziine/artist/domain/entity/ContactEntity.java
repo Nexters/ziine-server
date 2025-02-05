@@ -37,15 +37,15 @@ public class ContactEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "artist_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
-    private ArtistEntity artist;
+    private ArtistEntity artistEntity;
 
     public ContactEntity(
         final ContactType type,
         final String value,
-        final ArtistEntity artist
+        final ArtistEntity artistEntity
     ) {
         this.type = type;
         this.value = value;
-        this.artist = artist;
+        this.artistEntity = artistEntity;
     }
 }
