@@ -22,6 +22,6 @@ public class ArtworkPersistController {
         @Valid @RequestBody final ArtworkPersistRequestDto artworkPersistRequestDto
     ) {
         Long artworkId = artworkFacade.persistArtwork(artworkPersistRequestDto);
-        return ResponseEntity.created(URI.create("/api/artworks/" + artworkId)).build();
+        return ResponseEntity.created(URI.create("/api/v1/artworks/" + artworkId)).build();
     }
 }
