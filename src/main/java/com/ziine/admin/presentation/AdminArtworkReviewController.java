@@ -19,7 +19,7 @@ public class AdminArtworkReviewController {
     private final AdminArtworkReviewService adminArtworkReviewService;
 
     @PatchMapping("/{artworkId}/approve")
-    public ResponseEntity<Void> approveArtwork(final @PathVariable Long artworkId) {
+    public ResponseEntity<Void> approveArtwork(@PathVariable final Long artworkId) {
         adminArtworkReviewService.approveArtwork(artworkId);
         return ResponseEntity.noContent()
             .build();
@@ -27,8 +27,8 @@ public class AdminArtworkReviewController {
 
     @PatchMapping("/{artworkId}/reject")
     public ResponseEntity<Void> rejectArtwork(
-        final @PathVariable Long artworkId,
-        final @Valid @RequestBody AdminArtworkRejectRequestDto adminArtworkRejectRequestDto
+        @PathVariable final Long artworkId,
+        @Valid @RequestBody final AdminArtworkRejectRequestDto adminArtworkRejectRequestDto
     ) {
         adminArtworkReviewService.rejectArtwork(artworkId, adminArtworkRejectRequestDto);
         return ResponseEntity.noContent()
