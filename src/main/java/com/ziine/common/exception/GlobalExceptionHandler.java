@@ -4,7 +4,6 @@ import com.ziine.common.dto.ErrorResponseDto;
 import jakarta.annotation.Nullable;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
@@ -18,43 +17,43 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @Slf4j
-@RequiredArgsConstructor
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
-        final MethodArgumentNotValidException e,
-        final HttpHeaders headers,
-        final HttpStatusCode statusCode,
-        final WebRequest request
+        final MethodArgumentNotValidException methodArgumentNotValidException,
+        final HttpHeaders httpHeaders,
+        final HttpStatusCode httpStatusCode,
+        final WebRequest webRequest
     ) {
-        final String message = e.getBindingResult()
+        final String validationErrorMessage = methodArgumentNotValidException.getBindingResult()
             .getAllErrors()
             .stream()
             .map(DefaultMessageSourceResolvable::getDefaultMessage)
             .collect(Collectors.joining(", "));
 
-        final ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(statusCode, message);
+        final ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(httpStatusCode, validationErrorMessage);
 
-        return handleExceptionInternal(e, problemDetail, headers, statusCode, request);
+        return handleExceptionInternal(methodArgumentNotValidException, problemDetail, httpHeaders, httpStatusCode,
+            webRequest);
     }
 
     @Override
     public ResponseEntity<Object> createResponseEntity(
-        final @Nullable Object body,
-        final HttpHeaders headers,
-        final HttpStatusCode statusCode,
-        final WebRequest request
+        final @Nullable Object responseBody,
+        final HttpHeaders httpHeaders,
+        final HttpStatusCode httpStatusCode,
+        final WebRequest webRequest
     ) {
-        if (body instanceof ProblemDetail problemDetail) {
+        if (responseBody instanceof ProblemDetail problemDetail) {
             log.info("[CommonException] URI: {}, Status: {}, Message: {}",
-                request.getDescription(false), statusCode, problemDetail.getDetail());
+                webRequest.getDescription(false), httpStatusCode, problemDetail.getDetail());
 
-            return ResponseEntity.status(statusCode)
+            return ResponseEntity.status(httpStatusCode)
                 .body(new ErrorResponseDto(ErrorCode.BAD_REQUEST.getCode(), problemDetail.getDetail()));
         }
-        log.error("[UnexpectedException] URI: {}, Message: {}", request.getDescription(false), body);
+        log.error("[UnexpectedException] URI: {}, Message: {}", webRequest.getDescription(false), responseBody);
 
         return ResponseEntity.status(ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus())
             .body(new ErrorResponseDto(
@@ -63,26 +62,26 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<ErrorResponseDto> handleBusinessException(
-        final BusinessException e,
-        final HttpServletRequest request
+        final BusinessException businessException,
+        final HttpServletRequest httpServletRequest
     ) {
         log.info("[BusinessException] URI: {}, Code: {}, Message: {}",
-            request.getRequestURI(), e.getErrorCode()
-                .getCode(), e.getMessage()
+            httpServletRequest.getRequestURI(), businessException.getErrorCode()
+                .getCode(), businessException.getMessage()
         );
 
-        return ResponseEntity.status(e.getErrorCode()
+        return ResponseEntity.status(businessException.getErrorCode()
                 .getHttpStatus())
-            .body(new ErrorResponseDto(e.getErrorCode()));
+            .body(new ErrorResponseDto(businessException.getErrorCode()));
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDto> handleInternalException(
-        final Exception e,
-        final HttpServletRequest request
+        final Exception exception,
+        final HttpServletRequest httpServletRequest
     ) {
         log.error("[UnexpectedException] URI: {}, Message: {}",
-            request.getRequestURI(), e.getMessage());
+            httpServletRequest.getRequestURI(), exception.getMessage());
 
         return ResponseEntity.status(ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus())
             .body(new ErrorResponseDto(ErrorCode.INTERNAL_SERVER_ERROR));
