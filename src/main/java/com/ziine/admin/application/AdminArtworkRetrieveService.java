@@ -16,7 +16,7 @@ public class AdminArtworkRetrieveService {
 
     @Transactional(readOnly = true)
     public List<AdminArtworkRetrieveResponseDto> retrieveArtworksByStatus(final ArtworkStatus artworkStatus) {
-        if (artworkStatus == null) {
+        if (artworkStatus == null) {  // TODO. 추후 Querydsl 도입 시 검색 조건을 동적으로 처리
             return artworkRepository.findAllByOrderByCreatedAtAsc()
                 .stream()
                 .map(AdminArtworkRetrieveResponseDto::fromEntity)
