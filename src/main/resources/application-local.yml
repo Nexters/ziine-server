@@ -24,6 +24,7 @@ spring:
           level: warn
           exclude:
     open-in-view: false
+
 logging:
   level:
     org.hibernate.orm.jdbc.bind: trace
