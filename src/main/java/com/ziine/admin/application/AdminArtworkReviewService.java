@@ -1,8 +1,10 @@
 package com.ziine.admin.application;
 
 import com.ziine.admin.application.dto.request.AdminArtworkRejectRequestDto;
+import com.ziine.admin.domain.Admin;
 import com.ziine.admin.domain.entity.ArtworkStatusHistoryEntity;
 import com.ziine.admin.domain.repository.ArtworkStatusHistoryRepository;
+import com.ziine.admin.exception.AdminNotFoundException;
 import com.ziine.artwork.domain.entity.ArtworkEntity;
 import com.ziine.artwork.domain.entity.ArtworkStatus;
 import com.ziine.artwork.domain.repository.ArtworkRepository;
@@ -24,12 +26,14 @@ public class AdminArtworkReviewService { // TODO. 추후 Spring Event 방식으�
         final ArtworkEntity artworkEntity = artworkRepository.findById(artworkId)
             .orElseThrow(
                 () -> new BusinessException(ErrorCode.ARTWORK_NOT_FOUND)); // TODO. ArtworkNotFoundException 으로 변경
+        final Admin admin = AdminContextHolder.getAdmin()
+            .orElseThrow(() -> AdminNotFoundException.INSTANCE);
 
         final ArtworkStatus fromStatus = artworkEntity.getStatus();
         artworkEntity.updateStatus(ArtworkStatus.APPROVED);
 
         artworkStatusHistoryRepository.save(new ArtworkStatusHistoryEntity(
-            fromStatus, ArtworkStatus.APPROVED, null, "TODO", artworkEntity
+            fromStatus, ArtworkStatus.APPROVED, null, admin.name(), artworkEntity
         ));
     }
 
@@ -41,12 +45,15 @@ public class AdminArtworkReviewService { // TODO. 추후 Spring Event 방식으�
         final ArtworkEntity artworkEntity = artworkRepository.findById(artworkId)
             .orElseThrow(
                 () -> new BusinessException(ErrorCode.ARTWORK_NOT_FOUND)); // TODO. ArtworkNotFoundException 으로 변경
+        final Admin admin = AdminContextHolder.getAdmin()
+            .orElseThrow(() -> AdminNotFoundException.INSTANCE);
 
         final ArtworkStatus fromStatus = artworkEntity.getStatus();
         artworkEntity.updateStatus(ArtworkStatus.REJECTED);
 
         artworkStatusHistoryRepository.save(new ArtworkStatusHistoryEntity(
-            fromStatus, ArtworkStatus.REJECTED, adminArtworkRejectRequestDto.rejectionReason(), "TODO", artworkEntity
+            fromStatus, ArtworkStatus.REJECTED,
+            adminArtworkRejectRequestDto.rejectionReason(), admin.name(), artworkEntity
         ));
     }
 }
