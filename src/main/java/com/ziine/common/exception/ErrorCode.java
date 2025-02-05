@@ -16,6 +16,11 @@ public enum ErrorCode {
      * 2XXX -> Artwork 에러
      */
     ARTWORK_NOT_FOUND(2001, "Artwork Not Found", HttpStatus.NOT_FOUND),
+
+    /**
+     * 3XXX -> Admin 에러
+     */
+    ADMIN_UNAUTHORIZED(3000, "Unauthorized Admin Access", HttpStatus.UNAUTHORIZED),
     ;
 
     private final int code;
