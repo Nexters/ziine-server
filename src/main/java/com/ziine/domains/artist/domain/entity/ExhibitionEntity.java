@@ -1,5 +1,6 @@
 package com.ziine.domains.artist.domain.entity;
 
+import com.ziine.domains.artwork.dto.request.ArtworkPersistRequestDto.ExhibitionRequestDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
@@ -38,12 +39,11 @@ public class ExhibitionEntity {
     private ArtistEntity artist;
 
     public ExhibitionEntity(
-        final String title,
-        final LocalDate exhibitionDate,
-        final ArtistEntity artist
+        final ExhibitionRequestDto exhibition,
+        final ArtistEntity artistEntity
     ) {
-        this.title = title;
-        this.exhibitionDate = exhibitionDate;
-        this.artist = artist;
+        this.title = exhibition.title();
+        this.exhibitionDate = exhibition.exhibitionDate();
+        this.artist = artistEntity;
     }
 }

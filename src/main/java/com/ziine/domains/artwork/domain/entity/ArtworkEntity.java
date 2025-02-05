@@ -2,6 +2,7 @@ package com.ziine.domains.artwork.domain.entity;
 
 import com.ziine.domains.artist.domain.entity.ArtistEntity;
 import com.ziine.common.entity.BaseEntity;
+import com.ziine.domains.artwork.dto.ArtworkPersistDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Embedded;
@@ -55,20 +56,16 @@ public class ArtworkEntity extends BaseEntity {
     private ArtistEntity artist;
 
     public ArtworkEntity(
-        final String title,
-        final String description,
-        final String imageUrl,
-        final String material,
-        final Size size,
-        final ArtistEntity artist
+        final ArtworkPersistDto artworkPersistDto,
+        final ArtistEntity artistEntity
     ) {
-        this.title = title;
-        this.description = description;
-        this.imageUrl = imageUrl;
-        this.material = material;
-        this.size = size;
-        this.artist = artist;
+        this.title = artworkPersistDto.title();
+        this.description = artworkPersistDto.description();
+        this.imageUrl = artworkPersistDto.artworkImageUrl();
+        this.material = artworkPersistDto.material();
+        this.size = new Size(artworkPersistDto.width(), artworkPersistDto.height());
         this.status = ArtworkStatus.PENDING;
+        this.artist = artistEntity;
     }
 
     public void updateStatus(final ArtworkStatus newStatus) {

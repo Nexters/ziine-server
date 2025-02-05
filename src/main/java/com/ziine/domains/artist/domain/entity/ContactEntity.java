@@ -1,5 +1,6 @@
 package com.ziine.domains.artist.domain.entity;
 
+import com.ziine.domains.artwork.dto.request.ArtworkPersistRequestDto.ContactRequestDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
@@ -40,12 +41,11 @@ public class ContactEntity {
     private ArtistEntity artist;
 
     public ContactEntity(
-        final ContactType type,
-        final String value,
-        final ArtistEntity artist
+        final ContactRequestDto contact,
+        final ArtistEntity artistEntity
     ) {
-        this.type = type;
-        this.value = value;
-        this.artist = artist;
+        this.type = contact.type();
+        this.value = contact.value();
+        this.artist = artistEntity;
     }
 }
