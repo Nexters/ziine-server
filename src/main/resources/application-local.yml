@@ -28,3 +28,6 @@ spring:
 logging:
   level:
     org.hibernate.orm.jdbc.bind: trace
+
+jwt:
+  secret-key: clxksmsduftlaglekfflsekkkkkkkkkkkkkk
