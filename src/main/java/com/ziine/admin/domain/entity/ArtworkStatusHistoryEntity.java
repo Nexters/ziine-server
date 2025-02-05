@@ -1,5 +1,7 @@
-package com.ziine.domains.artwork.domain.entity;
+package com.ziine.admin.domain.entity;
 
+import com.ziine.domains.artwork.domain.entity.ArtworkEntity;
+import com.ziine.domains.artwork.domain.entity.ArtworkStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
@@ -30,7 +32,7 @@ public class ArtworkStatusHistoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "history_id")
+    @Column(name = "artwork_status_history_id")
     private Long id;
 
     @Enumerated(EnumType.STRING)
@@ -52,20 +54,20 @@ public class ArtworkStatusHistoryEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "artwork_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
-    private ArtworkEntity artwork;
+    private ArtworkEntity artworkEntity;
 
     public ArtworkStatusHistoryEntity(
         final ArtworkStatus fromStatus,
         final ArtworkStatus toStatus,
         final String rejectionReason,
         final String changedBy,
-        final ArtworkEntity artwork
+        final ArtworkEntity artworkEntity
     ) {
         this.fromStatus = fromStatus;
         this.toStatus = toStatus;
         this.rejectionReason = rejectionReason;
         this.changedBy = changedBy;
-        this.artwork = artwork;
+        this.artworkEntity = artworkEntity;
     }
 
     @PrePersist

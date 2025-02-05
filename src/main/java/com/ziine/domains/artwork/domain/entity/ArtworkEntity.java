@@ -45,7 +45,7 @@ public class ArtworkEntity extends BaseEntity {
     private String material;
 
     @Embedded
-    private Size size;
+    private SizeAttribute sizeAttribute;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
@@ -53,7 +53,7 @@ public class ArtworkEntity extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "artist_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
-    private ArtistEntity artist;
+    private ArtistEntity artistEntity;
 
     public ArtworkEntity(
         final ArtworkPersistDto artworkPersistDto,
@@ -63,9 +63,9 @@ public class ArtworkEntity extends BaseEntity {
         this.description = artworkPersistDto.description();
         this.imageUrl = artworkPersistDto.artworkImageUrl();
         this.material = artworkPersistDto.material();
-        this.size = new Size(artworkPersistDto.width(), artworkPersistDto.height());
+        this.sizeAttribute = new SizeAttribute(artworkPersistDto.width(), artworkPersistDto.height());
         this.status = ArtworkStatus.PENDING;
-        this.artist = artistEntity;
+        this.artistEntity = artistEntity;
     }
 
     public void updateStatus(final ArtworkStatus newStatus) {

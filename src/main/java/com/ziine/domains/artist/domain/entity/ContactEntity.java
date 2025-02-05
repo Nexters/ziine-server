@@ -38,14 +38,14 @@ public class ContactEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "artist_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
-    private ArtistEntity artist;
+    private ArtistEntity artistEntity;
 
     public ContactEntity(
-        final ContactRequestDto contact,
+        final ContactRequestDto contactRequestDto,
         final ArtistEntity artistEntity
     ) {
-        this.type = contact.type();
-        this.value = contact.value();
-        this.artist = artistEntity;
+        this.type = contactRequestDto.type();
+        this.value = contactRequestDto.value();
+        this.artistEntity = artistEntity;
     }
 }

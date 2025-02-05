@@ -31,13 +31,13 @@ public class EducationEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "artist_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
-    private ArtistEntity artist;
+    private ArtistEntity artistEntity;
 
     public EducationEntity(
         final String tag,
-        final ArtistEntity artist
+        final ArtistEntity artistEntity
     ) {
         this.tag = tag;
-        this.artist = artist;
+        this.artistEntity = artistEntity;
     }
 }

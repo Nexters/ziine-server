@@ -36,16 +36,16 @@ public class ArtistEntity {
     @Column(length = 255)
     private String email;
 
-    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "artistEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<ArtworkEntity> artworkEntities = new ArrayList<>();
 
-    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "artistEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<EducationEntity> educationEntities = new ArrayList<>();
 
-    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "artistEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<ExhibitionEntity> exhibitionEntities = new ArrayList<>();
 
-    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "artistEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<ContactEntity> contactEntities = new ArrayList<>();
 
     public ArtistEntity(final ArtistPersistDto artistPersistDto) {

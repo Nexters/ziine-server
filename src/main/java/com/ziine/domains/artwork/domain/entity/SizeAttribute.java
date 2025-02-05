@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Embeddable
-public class Size {
+public class SizeAttribute {
 
     @Column(nullable = false, columnDefinition = "SMALLINT UNSIGNED")
     private int width;
@@ -17,7 +17,7 @@ public class Size {
     @Column(nullable = false, columnDefinition = "SMALLINT UNSIGNED")
     private int height;
 
-    public Size(
+    public SizeAttribute(
         final int width,
         final int height
     ) {
