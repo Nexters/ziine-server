@@ -39,12 +39,12 @@ public class ExhibitionEntity {
     private ArtistEntity artistEntity;
 
     public static ExhibitionEntity fromExhibitionRequestDto(
-        final ExhibitionRequestDto exhibition,
+        final ExhibitionRequestDto exhibitionRequestDto,
         final ArtistEntity artistEntity
     ) {
         ExhibitionEntity exhibitionEntity = new ExhibitionEntity();
-        exhibitionEntity.title = exhibition.title();
-        exhibitionEntity.exhibitionDate = exhibition.exhibitionDate();
+        exhibitionEntity.title = exhibitionRequestDto.title();
+        exhibitionEntity.exhibitionDate = exhibitionRequestDto.exhibitionDate();
         exhibitionEntity.artistEntity = artistEntity;
         return exhibitionEntity;
     }
