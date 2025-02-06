@@ -6,8 +6,7 @@ import com.ziine.admin.artwork.domain.repository.ArtworkStatusHistoryRepository;
 import com.ziine.admin.artwork.dto.request.AdminArtworkRejectRequestDto;
 import com.ziine.admin.auth.application.AdminContextHolder;
 import com.ziine.admin.auth.domain.Admin;
-import com.ziine.common.exception.BusinessException;
-import com.ziine.common.exception.ErrorCode;
+import com.ziine.domains.artwork.application.exception.ArtworkNotFoundException;
 import com.ziine.domains.artwork.domain.entity.ArtworkEntity;
 import com.ziine.domains.artwork.domain.entity.ArtworkStatus;
 import com.ziine.domains.artwork.domain.repository.ArtworkRepository;
@@ -25,8 +24,7 @@ public class AdminArtworkReviewService { // TODO. 추후 Spring Event 방식으�
     @Transactional
     public void approveArtwork(final Long artworkId) {
         final ArtworkEntity artworkEntity = artworkRepository.findById(artworkId)
-            .orElseThrow(
-                () -> new BusinessException(ErrorCode.ARTWORK_NOT_FOUND)); // TODO. ArtworkNotFoundException 으로 변경
+            .orElseThrow(() -> ArtworkNotFoundException.INSTANCE);
         final Admin admin = AdminContextHolder.getAdmin()
             .orElseThrow(() -> AdminNotFoundException.INSTANCE);
 
@@ -44,8 +42,7 @@ public class AdminArtworkReviewService { // TODO. 추후 Spring Event 방식으�
         final AdminArtworkRejectRequestDto adminArtworkRejectRequestDto
     ) {
         final ArtworkEntity artworkEntity = artworkRepository.findById(artworkId)
-            .orElseThrow(
-                () -> new BusinessException(ErrorCode.ARTWORK_NOT_FOUND)); // TODO. ArtworkNotFoundException 으로 변경
+            .orElseThrow(() -> ArtworkNotFoundException.INSTANCE);
         final Admin admin = AdminContextHolder.getAdmin()
             .orElseThrow(() -> AdminNotFoundException.INSTANCE);
 
