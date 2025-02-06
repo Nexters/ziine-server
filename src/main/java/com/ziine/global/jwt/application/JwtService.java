@@ -10,8 +10,8 @@ import javax.crypto.spec.SecretKeySpec;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
 
-@Service
 @EnableConfigurationProperties(JwtProperties.class)
+@Service
 public class JwtService {
 
     private static final String BEARER_TOKEN_PREFIX = "Bearer ";
