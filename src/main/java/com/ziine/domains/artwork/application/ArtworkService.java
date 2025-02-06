@@ -12,10 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @Service
 public class ArtworkService {
+
     private final ArtworkRepository artworkRepository;
 
     @Transactional
-    public ArtworkEntity persistArtwork(final ArtworkPersistDto artworkPersistDto, final ArtistEntity artistEntity) {
+    public ArtworkEntity persistArtwork(
+        final ArtworkPersistDto artworkPersistDto,
+        final ArtistEntity artistEntity
+    ) {
         return artworkRepository.save(ArtworkEntity.fromArtworkPersistDto(artworkPersistDto, artistEntity));
     }
 }

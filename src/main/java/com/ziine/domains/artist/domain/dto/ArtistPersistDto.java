@@ -12,6 +12,7 @@ public record ArtistPersistDto(
     List<ContactRequestDto> contacts,
     String email
 ) {
+
     public static ArtistPersistDto fromArtworkPersistRequestDto(
         final ArtworkPersistRequestDto artworkPersistRequestDto
     ) {

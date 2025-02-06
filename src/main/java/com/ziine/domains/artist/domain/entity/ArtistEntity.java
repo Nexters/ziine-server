@@ -56,15 +56,19 @@ public class ArtistEntity {
         artistEntity.profileImageUrl = "https://ziine.me/" + artistEntity.name + ".png";
         artistEntity.email = artistPersistDto.email();
 
-        artistPersistDto.educations().forEach(education -> {
-            artistEntity.educationEntities.add(new EducationEntity(education, artistEntity));
-        });
-        artistPersistDto.exhibitions().forEach(exhibition -> {
-            artistEntity.exhibitionEntities.add(ExhibitionEntity.fromExhibitionRequestDto(exhibition, artistEntity));
-        });
-        artistPersistDto.contacts().forEach(contact -> {
-            artistEntity.contactEntities.add(ContactEntity.fromContactRequestDto(contact, artistEntity));
-        });
+        artistPersistDto.educations()
+            .forEach(education -> {
+                artistEntity.educationEntities.add(new EducationEntity(education, artistEntity));
+            });
+        artistPersistDto.exhibitions()
+            .forEach(exhibition -> {
+                artistEntity.exhibitionEntities.add(
+                    ExhibitionEntity.fromExhibitionRequestDto(exhibition, artistEntity));
+            });
+        artistPersistDto.contacts()
+            .forEach(contact -> {
+                artistEntity.contactEntities.add(ContactEntity.fromContactRequestDto(contact, artistEntity));
+            });
 
         return artistEntity;
     }
