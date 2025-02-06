@@ -1,4 +1,4 @@
-package com.ziine.common.exception;
+package com.ziine.global.error.domain;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

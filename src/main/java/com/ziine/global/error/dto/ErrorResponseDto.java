@@ -1,6 +1,6 @@
-package com.ziine.common.dto;
+package com.ziine.global.error.dto;
 
-import com.ziine.common.exception.ErrorCode;
+import com.ziine.global.error.domain.ErrorCode;
 
 public record ErrorResponseDto(int code, String message) {
 

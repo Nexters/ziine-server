@@ -1,4 +1,4 @@
-package com.ziine.common.config;
+package com.ziine.global.jwt.config;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

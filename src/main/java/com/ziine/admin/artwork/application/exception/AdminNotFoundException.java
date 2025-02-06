@@ -1,7 +1,7 @@
 package com.ziine.admin.artwork.application.exception;
 
-import com.ziine.common.exception.BusinessException;
-import com.ziine.common.exception.ErrorCode;
+import com.ziine.global.error.application.exception.BusinessException;
+import com.ziine.global.error.domain.ErrorCode;
 
 public class AdminNotFoundException extends BusinessException {
 

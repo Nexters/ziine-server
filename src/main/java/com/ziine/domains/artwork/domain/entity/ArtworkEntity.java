@@ -1,8 +1,8 @@
 package com.ziine.domains.artwork.domain.entity;
 
-import com.ziine.common.entity.BaseEntity;
 import com.ziine.domains.artist.domain.entity.ArtistEntity;
 import com.ziine.domains.artwork.dto.ArtworkPersistDto;
+import com.ziine.global.jpa.domain.entity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Embedded;

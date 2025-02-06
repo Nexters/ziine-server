@@ -1,5 +1,6 @@
-package com.ziine.common.exception;
+package com.ziine.global.error.application.exception;
 
+import com.ziine.global.error.domain.ErrorCode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

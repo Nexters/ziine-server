@@ -1,7 +1,9 @@
-package com.ziine.common.exception;
+package com.ziine.global.error.presentation;
 
 import com.ziine.admin.auth.application.exception.AdminUnauthorizedException;
-import com.ziine.common.dto.ErrorResponseDto;
+import com.ziine.global.error.application.exception.BusinessException;
+import com.ziine.global.error.domain.ErrorCode;
+import com.ziine.global.error.dto.ErrorResponseDto;
 import jakarta.annotation.Nullable;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.stream.Collectors;

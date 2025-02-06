@@ -1,4 +1,4 @@
-package com.ziine.common.config;
+package com.ziine.global.web.config;
 
 import com.ziine.admin.auth.presentation.AdminAuthenticationInterceptor;
 import lombok.RequiredArgsConstructor;

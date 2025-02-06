@@ -1,6 +1,6 @@
-package com.ziine.admin.auth.application;
+package com.ziine.global.jwt.application;
 
-import com.ziine.global.config.JwtProperties;
+import com.ziine.global.jwt.config.JwtProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import java.nio.charset.StandardCharsets;
