@@ -1,6 +1,5 @@
-package com.ziine.domains.artist.entity;
+package com.ziine.domains.artist.domain.entity;
 
-import com.ziine.domains.artwork.dto.request.ArtworkPersistRequestDto.ExhibitionRequestDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
@@ -12,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import java.time.LocalDate;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,38 +18,26 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "exhibition")
-public class ExhibitionEntity {
+@Table(name = "education")
+public class EducationEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "exhibition_id")
+    @Column(name = "education_id")
     private Long id;
 
-    @Column(nullable = false, length = 80)
-    private String title;
-
-    @Column(nullable = false)
-    private LocalDate exhibitionDate;
+    @Column(nullable = false, length = 20)
+    private String tag;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "artist_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
     private ArtistEntity artistEntity;
 
-    public ExhibitionEntity(
-        final String title,
-        final LocalDate exhibitionDate,
+    public EducationEntity(
+        final String tag,
         final ArtistEntity artistEntity
     ) {
-        this.title = title;
-        this.exhibitionDate = exhibitionDate;
+        this.tag = tag;
         this.artistEntity = artistEntity;
-    }
-
-    public static ExhibitionEntity fromExhibitionRequestDto(
-        final ExhibitionRequestDto exhibitionRequestDto,
-        final ArtistEntity artistEntity
-    ) {
-        return new ExhibitionEntity(exhibitionRequestDto.title(), exhibitionRequestDto.exhibitionDate(), artistEntity);
     }
 }

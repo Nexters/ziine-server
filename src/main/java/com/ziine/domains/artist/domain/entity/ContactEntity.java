@@ -1,4 +1,4 @@
-package com.ziine.domains.artist.entity;
+package com.ziine.domains.artist.domain.entity;
 
 import com.ziine.domains.artwork.dto.request.ArtworkPersistRequestDto.ContactRequestDto;
 import jakarta.persistence.Column;

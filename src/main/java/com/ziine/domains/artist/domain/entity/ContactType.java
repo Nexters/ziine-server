@@ -1,4 +1,4 @@
-package com.ziine.domains.artist.entity;
+package com.ziine.domains.artist.domain.entity;
 
 import lombok.Getter;
 

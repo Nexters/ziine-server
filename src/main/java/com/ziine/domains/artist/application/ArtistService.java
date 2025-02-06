@@ -1,8 +1,8 @@
 package com.ziine.domains.artist.application;
 
+import com.ziine.domains.artist.domain.entity.ArtistEntity;
+import com.ziine.domains.artist.domain.repository.ArtistRepository;
 import com.ziine.domains.artist.dto.ArtistPersistDto;
-import com.ziine.domains.artist.entity.ArtistEntity;
-import com.ziine.domains.artist.repository.ArtistRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

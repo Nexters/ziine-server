@@ -1,7 +1,7 @@
 package com.ziine.domains.artwork.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.ziine.domains.artist.entity.ContactType;
+import com.ziine.domains.artist.domain.entity.ContactType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;

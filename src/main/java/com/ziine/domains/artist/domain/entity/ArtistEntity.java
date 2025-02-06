@@ -1,4 +1,4 @@
-package com.ziine.domains.artist.entity;
+package com.ziine.domains.artist.domain.entity;
 
 import com.ziine.domains.artist.dto.ArtistPersistDto;
 import com.ziine.domains.artwork.domain.entity.ArtworkEntity;
