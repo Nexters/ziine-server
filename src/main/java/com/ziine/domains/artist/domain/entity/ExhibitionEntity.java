@@ -1,5 +1,6 @@
-package com.ziine.artist.domain.entity;
+package com.ziine.domains.artist.domain.entity;
 
+import com.ziine.domains.artwork.dto.request.ArtworkPersistRequestDto.ExhibitionRequestDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
@@ -37,13 +38,14 @@ public class ExhibitionEntity {
     @JoinColumn(name = "artist_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
     private ArtistEntity artistEntity;
 
-    public ExhibitionEntity(
-        final String title,
-        final LocalDate exhibitionDate,
+    public static ExhibitionEntity fromExhibitionRequestDto(
+        final ExhibitionRequestDto exhibitionRequestDto,
         final ArtistEntity artistEntity
     ) {
-        this.title = title;
-        this.exhibitionDate = exhibitionDate;
-        this.artistEntity = artistEntity;
+        ExhibitionEntity exhibitionEntity = new ExhibitionEntity();
+        exhibitionEntity.title = exhibitionRequestDto.title();
+        exhibitionEntity.exhibitionDate = exhibitionRequestDto.exhibitionDate();
+        exhibitionEntity.artistEntity = artistEntity;
+        return exhibitionEntity;
     }
 }
