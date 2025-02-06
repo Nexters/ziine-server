@@ -49,19 +49,23 @@ public class ArtistEntity {
     @OneToMany(mappedBy = "artistEntity", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private final List<ContactEntity> contactEntities = new ArrayList<>();
 
-    public ArtistEntity(final ArtistPersistDto artistPersistDto) {
-        this.name = artistPersistDto.artistName();
+    public static ArtistEntity fromArtistPersistDto(final ArtistPersistDto artistPersistDto) {
+        ArtistEntity artistEntity = new ArtistEntity();
+        artistEntity.name = artistPersistDto.artistName();
         // Todo: 랜덤 이미지 넣는 로직으로 수정 필요
-        this.profileImageUrl = "https://ziine.me/" + name + ".png";
-        this.email = artistPersistDto.email();
+        artistEntity.profileImageUrl = "https://ziine.me/" + artistEntity.name + ".png";
+        artistEntity.email = artistPersistDto.email();
+
         artistPersistDto.educations().forEach(education -> {
-            educationEntities.add(new EducationEntity(education, this));
+            artistEntity.educationEntities.add(new EducationEntity(education, artistEntity));
         });
         artistPersistDto.exhibitions().forEach(exhibition -> {
-            exhibitionEntities.add(new ExhibitionEntity(exhibition, this));
+            artistEntity.exhibitionEntities.add(ExhibitionEntity.fromExhibitionRequestDto(exhibition, artistEntity));
         });
         artistPersistDto.contacts().forEach(contact -> {
-            contactEntities.add(new ContactEntity(contact, this));
+            artistEntity.contactEntities.add(ContactEntity.fromContactRequestDto(contact, artistEntity));
         });
+
+        return artistEntity;
     }
 }

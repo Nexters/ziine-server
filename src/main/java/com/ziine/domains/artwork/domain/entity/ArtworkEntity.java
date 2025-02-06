@@ -55,17 +55,22 @@ public class ArtworkEntity extends BaseEntity {
     @JoinColumn(name = "artist_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
     private ArtistEntity artistEntity;
 
-    public ArtworkEntity(
+    public static ArtworkEntity fromArtworkPersistDto(
         final ArtworkPersistDto artworkPersistDto,
         final ArtistEntity artistEntity
     ) {
-        this.title = artworkPersistDto.title();
-        this.description = artworkPersistDto.description();
-        this.imageUrl = artworkPersistDto.artworkImageUrl();
-        this.material = artworkPersistDto.material();
-        this.sizeAttribute = new SizeAttribute(artworkPersistDto.width(), artworkPersistDto.height());
-        this.status = ArtworkStatus.PENDING;
-        this.artistEntity = artistEntity;
+        ArtworkEntity artworkEntity = new ArtworkEntity();
+        artworkEntity.title = artworkPersistDto.title();
+        artworkEntity.description = artworkPersistDto.description();
+        artworkEntity.imageUrl = artworkPersistDto.artworkImageUrl();
+        artworkEntity.material = artworkPersistDto.material();
+        artworkEntity.sizeAttribute = new SizeAttribute(
+            artworkPersistDto.width(),
+            artworkPersistDto.height()
+        );
+        artworkEntity.status = ArtworkStatus.PENDING;
+        artworkEntity.artistEntity = artistEntity;
+        return artworkEntity;
     }
 
     public void updateStatus(final ArtworkStatus newStatus) {

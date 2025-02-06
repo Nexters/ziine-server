@@ -16,6 +16,6 @@ public class ArtworkService {
 
     @Transactional
     public ArtworkEntity persistArtwork(final ArtworkPersistDto artworkPersistDto, final ArtistEntity artistEntity) {
-        return artworkRepository.save(new ArtworkEntity(artworkPersistDto, artistEntity));
+        return artworkRepository.save(ArtworkEntity.fromArtworkPersistDto(artworkPersistDto, artistEntity));
     }
 }

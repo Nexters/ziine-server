@@ -14,6 +14,6 @@ public class ArtistService {
 
     @Transactional
     public ArtistEntity persistArtist(final ArtistPersistDto artistPersistDto) {
-        return artistRepository.save(new ArtistEntity(artistPersistDto));
+        return artistRepository.save(ArtistEntity.fromArtistPersistDto(artistPersistDto));
     }
 }
