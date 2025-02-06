@@ -1,7 +1,7 @@
-package com.ziine.artwork.domain.repository;
+package com.ziine.domains.artwork.domain.repository;
 
-import com.ziine.artwork.domain.entity.ArtworkEntity;
-import com.ziine.artwork.domain.entity.ArtworkStatus;
+import com.ziine.domains.artwork.domain.entity.ArtworkEntity;
+import com.ziine.domains.artwork.domain.entity.ArtworkStatus;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

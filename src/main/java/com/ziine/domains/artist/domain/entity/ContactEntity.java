@@ -1,5 +1,6 @@
-package com.ziine.artist.domain.entity;
+package com.ziine.domains.artist.domain.entity;
 
+import com.ziine.domains.artwork.dto.request.ArtworkPersistRequestDto.ContactRequestDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
@@ -39,13 +40,14 @@ public class ContactEntity {
     @JoinColumn(name = "artist_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
     private ArtistEntity artistEntity;
 
-    public ContactEntity(
-        final ContactType type,
-        final String value,
+    public static ContactEntity fromContactRequestDto(
+        final ContactRequestDto contactRequestDto,
         final ArtistEntity artistEntity
     ) {
-        this.type = type;
-        this.value = value;
-        this.artistEntity = artistEntity;
+        ContactEntity contactEntity = new ContactEntity();
+        contactEntity.type = contactRequestDto.type();
+        contactEntity.value = contactRequestDto.value();
+        contactEntity.artistEntity = artistEntity;
+        return contactEntity;
     }
 }

@@ -1,7 +1,8 @@
-package com.ziine.artwork.domain.entity;
+package com.ziine.domains.artwork.domain.entity;
 
-import com.ziine.artist.domain.entity.ArtistEntity;
+import com.ziine.domains.artist.domain.entity.ArtistEntity;
 import com.ziine.common.entity.BaseEntity;
+import com.ziine.domains.artwork.dto.ArtworkPersistDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Embedded;
@@ -54,21 +55,22 @@ public class ArtworkEntity extends BaseEntity {
     @JoinColumn(name = "artist_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
     private ArtistEntity artistEntity;
 
-    public ArtworkEntity(
-        final String title,
-        final String description,
-        final String imageUrl,
-        final String material,
-        final SizeAttribute sizeAttribute,
+    public static ArtworkEntity fromArtworkPersistDto(
+        final ArtworkPersistDto artworkPersistDto,
         final ArtistEntity artistEntity
     ) {
-        this.title = title;
-        this.description = description;
-        this.imageUrl = imageUrl;
-        this.material = material;
-        this.sizeAttribute = sizeAttribute;
-        this.artistEntity = artistEntity;
-        this.status = ArtworkStatus.PENDING;
+        ArtworkEntity artworkEntity = new ArtworkEntity();
+        artworkEntity.title = artworkPersistDto.title();
+        artworkEntity.description = artworkPersistDto.description();
+        artworkEntity.imageUrl = artworkPersistDto.artworkImageUrl();
+        artworkEntity.material = artworkPersistDto.material();
+        artworkEntity.sizeAttribute = new SizeAttribute(
+            artworkPersistDto.width(),
+            artworkPersistDto.height()
+        );
+        artworkEntity.status = ArtworkStatus.PENDING;
+        artworkEntity.artistEntity = artistEntity;
+        return artworkEntity;
     }
 
     public void updateStatus(final ArtworkStatus newStatus) {
