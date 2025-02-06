@@ -1,6 +1,6 @@
 package com.ziine.domains.artwork.application;
 
-import com.ziine.domains.artist.domain.entity.ArtistEntity;
+import com.ziine.domains.artist.entity.ArtistEntity;
 import com.ziine.domains.artwork.domain.entity.ArtworkEntity;
 import com.ziine.domains.artwork.domain.repository.ArtworkRepository;
 import com.ziine.domains.artwork.dto.ArtworkPersistDto;

@@ -1,8 +1,8 @@
 package com.ziine.admin.artwork.application;
 
-import com.ziine.admin.artwork.application.dto.response.AdminArtworkRetrieveResponseDto;
-import com.ziine.artwork.domain.entity.ArtworkStatus;
-import com.ziine.artwork.domain.repository.ArtworkRepository;
+import com.ziine.admin.artwork.dto.response.AdminArtworkRetrieveResponseDto;
+import com.ziine.domains.artwork.domain.entity.ArtworkStatus;
+import com.ziine.domains.artwork.domain.repository.ArtworkRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

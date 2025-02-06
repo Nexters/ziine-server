@@ -1,6 +1,6 @@
-package com.ziine.domains.artist.domain.repository;
+package com.ziine.domains.artist.repository;
 
-import com.ziine.domains.artist.domain.entity.ArtistEntity;
+import com.ziine.domains.artist.entity.ArtistEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

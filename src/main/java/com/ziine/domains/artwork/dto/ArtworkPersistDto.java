@@ -11,18 +11,13 @@ public record ArtworkPersistDto(
     String artistName,
     String description
 ) {
+
     public static ArtworkPersistDto fromArtworkPersistRequestDto(
         final ArtworkPersistRequestDto artworkPersistRequestDto
     ) {
-        return new ArtworkPersistDto(
-            artworkPersistRequestDto.title(),
-            artworkPersistRequestDto.width(),
-            artworkPersistRequestDto.height(),
-            artworkPersistRequestDto.material(),
-            artworkPersistRequestDto.artworkImageUrl(),
-            artworkPersistRequestDto.artistName(),
-            artworkPersistRequestDto.description()
-        );
+        return new ArtworkPersistDto(artworkPersistRequestDto.title(), artworkPersistRequestDto.width(),
+            artworkPersistRequestDto.height(), artworkPersistRequestDto.material(),
+            artworkPersistRequestDto.artworkImageUrl(), artworkPersistRequestDto.artistName(),
+            artworkPersistRequestDto.description());
     }
 }
-

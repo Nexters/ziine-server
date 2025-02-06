@@ -1,7 +1,7 @@
 package com.ziine.domains.artwork.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.ziine.domains.artist.domain.entity.ContactType;
+import com.ziine.domains.artist.entity.ContactType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -9,17 +9,17 @@ import java.time.LocalDate;
 import java.util.List;
 
 public record ArtworkPersistRequestDto(
-    @NotBlank(message = "Title is required.")
+    @NotBlank(message = "Title is required")
     String title,
-    @PositiveOrZero
+    @PositiveOrZero(message = "Width must be zero or greater")
     int width,
-    @PositiveOrZero
+    @PositiveOrZero(message = "Height must be zero or greater")
     int height,
-    @NotBlank(message = "Metarial is required.")
+    @NotBlank(message = "Material is required")
     String material,
-    @NotBlank(message = "Artwork image url is required.")
+    @NotBlank(message = "Artwork image URL is required")
     String artworkImageUrl,
-    @NotBlank(message = "Artist name is required.")
+    @NotBlank(message = "Artist name is required")
     String artistName,
     String description,
     List<String> educations,
@@ -29,7 +29,7 @@ public record ArtworkPersistRequestDto(
 ) {
 
     public record ExhibitionRequestDto(
-        @NotBlank(message = "Exhibition title is required.")
+        @NotBlank(message = "Exhibition title is required")
         String title,
         @JsonFormat(pattern = "yyyy-MM-dd")
         LocalDate exhibitionDate
@@ -38,12 +38,11 @@ public record ArtworkPersistRequestDto(
     }
 
     public record ContactRequestDto(
-        @NotNull
+        @NotNull(message = "Contact type is required")
         ContactType type,
-        @NotBlank
+        @NotBlank(message = "Contact value is required")
         String value
     ) {
 
     }
 }
-

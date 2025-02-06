@@ -1,11 +1,8 @@
-package com.ziine.domains.artist.domain.entity;
+package com.ziine.domains.artist.entity;
 
-import com.ziine.domains.artwork.dto.request.ArtworkPersistRequestDto.ContactRequestDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
@@ -21,33 +18,26 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "contact")
-public class ContactEntity {
+@Table(name = "education")
+public class EducationEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "contact_id")
+    @Column(name = "education_id")
     private Long id;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
-    private ContactType type;
-
-    @Column(nullable = false, length = 255)
-    private String value;
+    private String tag;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "artist_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
     private ArtistEntity artistEntity;
 
-    public static ContactEntity fromContactRequestDto(
-        final ContactRequestDto contactRequestDto,
+    public EducationEntity(
+        final String tag,
         final ArtistEntity artistEntity
     ) {
-        ContactEntity contactEntity = new ContactEntity();
-        contactEntity.type = contactRequestDto.type();
-        contactEntity.value = contactRequestDto.value();
-        contactEntity.artistEntity = artistEntity;
-        return contactEntity;
+        this.tag = tag;
+        this.artistEntity = artistEntity;
     }
 }

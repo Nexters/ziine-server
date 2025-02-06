@@ -12,7 +12,9 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI openAPI() {
         return new OpenAPI()
-            .info(new Info().title("ZIINE API").version("0.0.1"))
-            .addServersItem(new Server().url("/").description("ZIINE API Server"));
+            .info(new Info().title("ZIINE API")
+                .version("0.0.1"))
+            .addServersItem(new Server().url("/")
+                .description("ZIINE API Server"));
     }
 }

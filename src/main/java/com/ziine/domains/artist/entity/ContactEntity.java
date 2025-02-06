@@ -1,9 +1,11 @@
-package com.ziine.domains.artist.domain.entity;
+package com.ziine.domains.artist.entity;
 
-import com.ziine.domains.artwork.dto.request.ArtworkPersistRequestDto.ExhibitionRequestDto;
+import com.ziine.domains.artwork.dto.request.ArtworkPersistRequestDto.ContactRequestDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +14,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import java.time.LocalDate;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,32 +21,39 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "exhibition")
-public class ExhibitionEntity {
+@Table(name = "contact")
+public class ContactEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "exhibition_id")
+    @Column(name = "contact_id")
     private Long id;
 
-    @Column(nullable = false, length = 80)
-    private String title;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private ContactType type;
 
-    @Column(nullable = false)
-    private LocalDate exhibitionDate;
+    @Column(nullable = false, length = 255)
+    private String value;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "artist_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
     private ArtistEntity artistEntity;
 
-    public static ExhibitionEntity fromExhibitionRequestDto(
-        final ExhibitionRequestDto exhibitionRequestDto,
+    public ContactEntity(
+        final ContactType type,
+        final String value,
         final ArtistEntity artistEntity
     ) {
-        ExhibitionEntity exhibitionEntity = new ExhibitionEntity();
-        exhibitionEntity.title = exhibitionRequestDto.title();
-        exhibitionEntity.exhibitionDate = exhibitionRequestDto.exhibitionDate();
-        exhibitionEntity.artistEntity = artistEntity;
-        return exhibitionEntity;
+        this.type = type;
+        this.value = value;
+        this.artistEntity = artistEntity;
+    }
+
+    public static ContactEntity fromContactRequestDto(
+        final ContactRequestDto contactRequestDto,
+        final ArtistEntity artistEntity
+    ) {
+        return new ContactEntity(contactRequestDto.type(), contactRequestDto.value(), artistEntity);
     }
 }

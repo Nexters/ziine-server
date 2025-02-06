@@ -1,7 +1,7 @@
 package com.ziine.admin.artwork.presentation;
 
 import com.ziine.admin.artwork.application.AdminArtworkReviewService;
-import com.ziine.admin.artwork.application.dto.request.AdminArtworkRejectRequestDto;
+import com.ziine.admin.artwork.dto.request.AdminArtworkRejectRequestDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
