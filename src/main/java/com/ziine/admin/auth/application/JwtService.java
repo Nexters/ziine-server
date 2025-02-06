@@ -1,7 +1,7 @@
-package com.ziine.admin.application;
+package com.ziine.admin.auth.application;
 
-import com.ziine.admin.application.config.JwtProperties;
-import com.ziine.admin.domain.Admin;
+import com.ziine.admin.auth.domain.Admin;
+import com.ziine.common.config.JwtProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import java.nio.charset.StandardCharsets;

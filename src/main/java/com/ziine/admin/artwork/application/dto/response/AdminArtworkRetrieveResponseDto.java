@@ -1,4 +1,4 @@
-package com.ziine.admin.application.dto.response;
+package com.ziine.admin.artwork.application.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ziine.artist.domain.entity.ArtistEntity;

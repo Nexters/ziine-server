@@ -1,9 +1,9 @@
-package com.ziine.admin.presentation;
+package com.ziine.admin.auth.presentation;
 
-import com.ziine.admin.application.AdminContextHolder;
-import com.ziine.admin.application.JwtService;
-import com.ziine.admin.domain.Admin;
-import com.ziine.admin.exception.AdminUnauthorizedException;
+import com.ziine.admin.auth.application.AdminContextHolder;
+import com.ziine.admin.auth.application.JwtService;
+import com.ziine.admin.auth.application.exception.AdminUnauthorizedException;
+import com.ziine.admin.auth.domain.Admin;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

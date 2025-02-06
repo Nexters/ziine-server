@@ -1,6 +1,6 @@
 package com.ziine.common.exception;
 
-import com.ziine.admin.exception.AdminUnauthorizedException;
+import com.ziine.admin.auth.application.exception.AdminUnauthorizedException;
 import com.ziine.common.dto.ErrorResponseDto;
 import jakarta.annotation.Nullable;
 import jakarta.servlet.http.HttpServletRequest;
@@ -72,7 +72,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus())
             .body(new ErrorResponseDto(ErrorCode.INTERNAL_SERVER_ERROR));
     }
-    
+
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<ErrorResponseDto> handleBusinessException(
         final BusinessException businessException,

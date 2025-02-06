@@ -1,4 +1,4 @@
-package com.ziine.admin.application.config;
+package com.ziine.common.config;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.ziine.admin.domain.entity;
+package com.ziine.admin.artwork.domain.entity;
 
 import com.ziine.artwork.domain.entity.ArtworkEntity;
 import com.ziine.artwork.domain.entity.ArtworkStatus;

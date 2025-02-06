@@ -1,6 +1,6 @@
-package com.ziine.admin.application;
+package com.ziine.admin.artwork.application;
 
-import com.ziine.admin.application.dto.response.AdminArtworkRetrieveResponseDto;
+import com.ziine.admin.artwork.application.dto.response.AdminArtworkRetrieveResponseDto;
 import com.ziine.artwork.domain.entity.ArtworkStatus;
 import com.ziine.artwork.domain.repository.ArtworkRepository;
 import java.util.List;

@@ -1,6 +1,6 @@
-package com.ziine.admin.application;
+package com.ziine.admin.auth.application;
 
-import com.ziine.admin.domain.Admin;
+import com.ziine.admin.auth.domain.Admin;
 import java.util.Optional;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

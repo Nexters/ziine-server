@@ -1,4 +1,4 @@
-package com.ziine.admin.exception;
+package com.ziine.admin.artwork.application.exception;
 
 import com.ziine.common.exception.BusinessException;
 import com.ziine.common.exception.ErrorCode;

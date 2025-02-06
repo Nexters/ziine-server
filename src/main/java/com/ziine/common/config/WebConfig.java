@@ -1,6 +1,6 @@
 package com.ziine.common.config;
 
-import com.ziine.admin.presentation.AdminAuthenticationInterceptor;
+import com.ziine.admin.auth.presentation.AdminAuthenticationInterceptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

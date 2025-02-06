@@ -1,10 +1,11 @@
-package com.ziine.admin.application;
+package com.ziine.admin.artwork.application;
 
-import com.ziine.admin.application.dto.request.AdminArtworkRejectRequestDto;
-import com.ziine.admin.domain.Admin;
-import com.ziine.admin.domain.entity.ArtworkStatusHistoryEntity;
-import com.ziine.admin.domain.repository.ArtworkStatusHistoryRepository;
-import com.ziine.admin.exception.AdminNotFoundException;
+import com.ziine.admin.artwork.application.dto.request.AdminArtworkRejectRequestDto;
+import com.ziine.admin.artwork.application.exception.AdminNotFoundException;
+import com.ziine.admin.artwork.domain.entity.ArtworkStatusHistoryEntity;
+import com.ziine.admin.artwork.domain.repository.ArtworkStatusHistoryRepository;
+import com.ziine.admin.auth.application.AdminContextHolder;
+import com.ziine.admin.auth.domain.Admin;
 import com.ziine.artwork.domain.entity.ArtworkEntity;
 import com.ziine.artwork.domain.entity.ArtworkStatus;
 import com.ziine.artwork.domain.repository.ArtworkRepository;
