@@ -1,7 +1,6 @@
 package com.ziine.admin.auth.application;
 
-import com.ziine.admin.auth.domain.Admin;
-import com.ziine.common.config.JwtProperties;
+import com.ziine.global.config.JwtProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import java.nio.charset.StandardCharsets;
@@ -29,11 +28,10 @@ public class JwtService {
         );
     }
 
-    public Optional<Admin> extractAdminFromJwtToken(final String authorizationHeader) {
+    public Optional<Claims> extractClaimsFromJwtToken(final String authorizationHeader) {
         try {
             final String jwtToken = removeBearerPrefix(authorizationHeader);
-            final Claims jwtClaims = parseJwtClaims(jwtToken);
-            return Optional.of(convertJwtClaimsToAdmin(jwtClaims));
+            return Optional.of(parseJwtClaims(jwtToken));
         } catch (final Exception exception) {
             return Optional.empty();
         }
@@ -52,10 +50,5 @@ public class JwtService {
             .build()
             .parseSignedClaims(jwtToken)
             .getPayload();
-    }
-
-    private Admin convertJwtClaimsToAdmin(final Claims jwtClaims) {
-        final String adminName = jwtClaims.get("name", String.class);
-        return new Admin(adminName);
     }
 }
