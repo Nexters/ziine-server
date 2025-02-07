@@ -1,6 +1,6 @@
-package com.ziine.admin.artwork.domain.repository;
+package com.ziine.api.artwork.domain.repository;
 
-import com.ziine.admin.artwork.domain.entity.ArtworkStatusHistoryEntity;
+import com.ziine.api.artwork.domain.entity.ArtworkStatusHistoryEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

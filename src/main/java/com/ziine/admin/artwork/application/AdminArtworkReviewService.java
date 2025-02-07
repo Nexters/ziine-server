@@ -1,15 +1,15 @@
 package com.ziine.admin.artwork.application;
 
 import com.ziine.admin.artwork.application.exception.AdminNotFoundException;
-import com.ziine.admin.artwork.domain.entity.ArtworkStatusHistoryEntity;
-import com.ziine.admin.artwork.domain.repository.ArtworkStatusHistoryRepository;
 import com.ziine.admin.artwork.dto.request.AdminArtworkRejectRequestDto;
 import com.ziine.admin.auth.application.AdminContextHolder;
 import com.ziine.admin.auth.domain.Admin;
 import com.ziine.api.artwork.application.exception.ArtworkNotFoundException;
 import com.ziine.api.artwork.domain.entity.ArtworkEntity;
 import com.ziine.api.artwork.domain.entity.ArtworkStatus;
+import com.ziine.api.artwork.domain.entity.ArtworkStatusHistoryEntity;
 import com.ziine.api.artwork.domain.repository.ArtworkRepository;
+import com.ziine.api.artwork.domain.repository.ArtworkStatusHistoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,9 +31,9 @@ public class AdminArtworkReviewService { // TODO. 추후 Spring Event 방식으�
         final ArtworkStatus fromStatus = artworkEntity.getStatus();
         artworkEntity.updateStatus(ArtworkStatus.APPROVED);
 
-        artworkStatusHistoryRepository.save(new ArtworkStatusHistoryEntity(
-            fromStatus, ArtworkStatus.APPROVED, null, admin.name(), artworkEntity
-        ));
+        artworkStatusHistoryRepository.save(
+            new ArtworkStatusHistoryEntity(fromStatus, ArtworkStatus.APPROVED,
+                null, admin.name(), artworkEntity));
     }
 
     @Transactional
@@ -49,9 +49,8 @@ public class AdminArtworkReviewService { // TODO. 추후 Spring Event 방식으�
         final ArtworkStatus fromStatus = artworkEntity.getStatus();
         artworkEntity.updateStatus(ArtworkStatus.REJECTED);
 
-        artworkStatusHistoryRepository.save(new ArtworkStatusHistoryEntity(
-            fromStatus, ArtworkStatus.REJECTED,
-            adminArtworkRejectRequestDto.rejectionReason(), admin.name(), artworkEntity
-        ));
+        artworkStatusHistoryRepository.save(
+            new ArtworkStatusHistoryEntity(fromStatus, ArtworkStatus.REJECTED,
+                adminArtworkRejectRequestDto.rejectionReason(), admin.name(), artworkEntity));
     }
 }

@@ -1,7 +1,5 @@
-package com.ziine.admin.artwork.domain.entity;
+package com.ziine.api.artwork.domain.entity;
 
-import com.ziine.api.artwork.domain.entity.ArtworkEntity;
-import com.ziine.api.artwork.domain.entity.ArtworkStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
