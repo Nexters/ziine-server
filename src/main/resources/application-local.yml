@@ -25,6 +25,20 @@ spring:
           exclude:
     open-in-view: false
 
+  mail:
+    mock: true
+    host: smtp.gmail.com
+    port: 587
+    username: ziine.mailbot
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          timeout: 5000
+          starttls:
+            enable: true
+
 logging:
   level:
     org.hibernate.orm.jdbc.bind: trace
