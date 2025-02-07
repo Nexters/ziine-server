@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
-public class AdminArtworkReviewService { // TODO. 추후 Spring Event 방식으로 변경하여 상태 변경을 저장하는 보조 관심사 분리
+public class AdminArtworkReviewService {
 
     private final ArtworkRepository artworkRepository;
     private final ArtworkStatusHistoryRepository artworkStatusHistoryRepository;
@@ -31,7 +31,7 @@ public class AdminArtworkReviewService { // TODO. 추후 Spring Event 방식으�
         final ArtworkStatus fromStatus = artworkEntity.getStatus();
         artworkEntity.updateStatus(ArtworkStatus.APPROVED);
 
-        artworkStatusHistoryRepository.save(
+        artworkStatusHistoryRepository.save( // TODO. 추후 Spring Event 방식으로 변경하여 상태 변경을 저장하는 보조 관심사 분리
             new ArtworkStatusHistoryEntity(fromStatus, ArtworkStatus.APPROVED,
                 null, admin.name(), artworkEntity));
     }
@@ -49,7 +49,7 @@ public class AdminArtworkReviewService { // TODO. 추후 Spring Event 방식으�
         final ArtworkStatus fromStatus = artworkEntity.getStatus();
         artworkEntity.updateStatus(ArtworkStatus.REJECTED);
 
-        artworkStatusHistoryRepository.save(
+        artworkStatusHistoryRepository.save( // TODO. 추후 Spring Event 방식으로 변경하여 상태 변경을 저장하는 보조 관심사 분리
             new ArtworkStatusHistoryEntity(fromStatus, ArtworkStatus.REJECTED,
                 adminArtworkRejectRequestDto.rejectionReason(), admin.name(), artworkEntity));
     }
