@@ -51,17 +51,20 @@ public class ArtistEntity {
 
     public ArtistEntity(
         final String name,
-        final String profileImageUrl,
         final String email
     ) {
         this.name = name;
-        this.profileImageUrl = profileImageUrl;
+        this.profileImageUrl = generateRandomProfileImageUrl(name);
         this.email = email;
     }
 
+    private String generateRandomProfileImageUrl(final String artistName) {
+        // TODO: 랜덤 이미지 로직 추가 필요
+        return "https://ziine.me/" + artistName + ".png";
+    }
+
     public static ArtistEntity fromArtistPersistDto(final ArtistPersistDto artistPersistDto) {
-        ArtistEntity artistEntity = new ArtistEntity(artistPersistDto.artistName(),
-            generateRandomProfileImageUrl(artistPersistDto.artistName()), artistPersistDto.email());
+        ArtistEntity artistEntity = new ArtistEntity(artistPersistDto.artistName(), artistPersistDto.email());
 
         artistPersistDto.educations()
             .forEach(education ->
@@ -76,10 +79,5 @@ public class ArtistEntity {
                 artistEntity.contactEntities.add(
                     ContactEntity.fromContactRequestDto(contact, artistEntity)));
         return artistEntity;
-    }
-
-    private static String generateRandomProfileImageUrl(final String artistName) {
-        // TODO: 랜덤 이미지 로직 추가 필요
-        return "https://ziine.me/" + artistName + ".png";
     }
 }
