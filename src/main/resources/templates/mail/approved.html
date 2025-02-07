@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>작품 승인 완료</title>
+</head>
+<body>
+<h2>작품이 승인되었습니다</h2>
+<p>안녕하세요, <strong th:text="${artistName}"></strong>님.</p>
+<p>귀하의 작품이 승인되었습니다.</p>
+<p>아래 버튼을 눌러 작품을 확인하세요.</p>
+
+<a th:href="${artworkUrl}" style="
+        display: inline-block;
+        padding: 10px 15px;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    ">작품 보러 가기</a>
+</body>
+</html>
