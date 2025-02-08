@@ -5,6 +5,7 @@ import com.ziine.api.artist.domain.entity.ArtistEntity;
 import com.ziine.api.artist.dto.ArtistPersistDto;
 import com.ziine.api.artwork.domain.entity.ArtworkEntity;
 import com.ziine.api.artwork.dto.ArtworkPersistDto;
+import com.ziine.api.artwork.dto.ArtworksRetrieveResponseDto;
 import com.ziine.api.artwork.dto.request.ArtworkPersistRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,9 @@ public class ArtworkFacade {
             ArtworkPersistDto.fromArtworkPersistRequestDto(artworkPersistRequestDto), artistEntity);
 
         return artworkEntity.getId();
+    }
+
+    public ArtworksRetrieveResponseDto retrieveArtworks() {
+        return artworkService.retrieveArtworks();
     }
 }

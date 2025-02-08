@@ -11,5 +11,7 @@ public interface ArtworkRepository extends JpaRepository<ArtworkEntity, Long> {
 
     List<ArtworkEntity> findByStatusOrderByCreatedAtAsc(ArtworkStatus status);
 
+    List<ArtworkEntity> findByStatusOrderByCreatedAtDesc(ArtworkStatus status);
+
     List<ArtworkEntity> findAllByOrderByCreatedAtAsc();
 }
