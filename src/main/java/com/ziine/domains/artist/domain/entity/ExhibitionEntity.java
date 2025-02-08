@@ -38,14 +38,20 @@ public class ExhibitionEntity {
     @JoinColumn(name = "artist_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
     private ArtistEntity artistEntity;
 
+    public ExhibitionEntity(
+        final String title,
+        final LocalDate exhibitionDate,
+        final ArtistEntity artistEntity
+    ) {
+        this.title = title;
+        this.exhibitionDate = exhibitionDate;
+        this.artistEntity = artistEntity;
+    }
+
     public static ExhibitionEntity fromExhibitionRequestDto(
         final ExhibitionRequestDto exhibitionRequestDto,
         final ArtistEntity artistEntity
     ) {
-        ExhibitionEntity exhibitionEntity = new ExhibitionEntity();
-        exhibitionEntity.title = exhibitionRequestDto.title();
-        exhibitionEntity.exhibitionDate = exhibitionRequestDto.exhibitionDate();
-        exhibitionEntity.artistEntity = artistEntity;
-        return exhibitionEntity;
+        return new ExhibitionEntity(exhibitionRequestDto.title(), exhibitionRequestDto.exhibitionDate(), artistEntity);
     }
 }

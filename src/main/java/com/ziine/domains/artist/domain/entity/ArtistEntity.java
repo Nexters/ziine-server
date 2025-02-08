@@ -1,6 +1,6 @@
 package com.ziine.domains.artist.domain.entity;
 
-import com.ziine.domains.artist.domain.dto.ArtistPersistDto;
+import com.ziine.domains.artist.dto.ArtistPersistDto;
 import com.ziine.domains.artwork.domain.entity.ArtworkEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -37,39 +37,47 @@ public class ArtistEntity {
     @Column(length = 255)
     private String email;
 
-    @OneToMany(mappedBy = "artistEntity", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "artistEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<ArtworkEntity> artworkEntities = new ArrayList<>();
 
-    @OneToMany(mappedBy = "artistEntity", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "artistEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<EducationEntity> educationEntities = new ArrayList<>();
 
-    @OneToMany(mappedBy = "artistEntity", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "artistEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<ExhibitionEntity> exhibitionEntities = new ArrayList<>();
 
-    @OneToMany(mappedBy = "artistEntity", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "artistEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<ContactEntity> contactEntities = new ArrayList<>();
 
+    public ArtistEntity(
+        final String name,
+        final String email
+    ) {
+        this.name = name;
+        this.profileImageUrl = generateRandomProfileImageUrl(name);
+        this.email = email;
+    }
+
+    private String generateRandomProfileImageUrl(final String artistName) {
+        // TODO: 랜덤 이미지 로직 추가 필요
+        return "https://ziine.me/" + artistName + ".png";
+    }
+
     public static ArtistEntity fromArtistPersistDto(final ArtistPersistDto artistPersistDto) {
-        ArtistEntity artistEntity = new ArtistEntity();
-        artistEntity.name = artistPersistDto.artistName();
-        // Todo: 랜덤 이미지 넣는 로직으로 수정 필요
-        artistEntity.profileImageUrl = "https://ziine.me/" + artistEntity.name + ".png";
-        artistEntity.email = artistPersistDto.email();
+        ArtistEntity artistEntity = new ArtistEntity(artistPersistDto.artistName(), artistPersistDto.email());
 
         artistPersistDto.educations()
-            .forEach(education -> {
-                artistEntity.educationEntities.add(new EducationEntity(education, artistEntity));
-            });
+            .forEach(education ->
+                artistEntity.educationEntities.add(
+                    new EducationEntity(education, artistEntity)));
         artistPersistDto.exhibitions()
-            .forEach(exhibition -> {
+            .forEach(exhibition ->
                 artistEntity.exhibitionEntities.add(
-                    ExhibitionEntity.fromExhibitionRequestDto(exhibition, artistEntity));
-            });
+                    ExhibitionEntity.fromExhibitionRequestDto(exhibition, artistEntity)));
         artistPersistDto.contacts()
-            .forEach(contact -> {
-                artistEntity.contactEntities.add(ContactEntity.fromContactRequestDto(contact, artistEntity));
-            });
-
+            .forEach(contact ->
+                artistEntity.contactEntities.add(
+                    ContactEntity.fromContactRequestDto(contact, artistEntity)));
         return artistEntity;
     }
 }

@@ -1,4 +1,4 @@
-package com.ziine.admin.application.dto.request;
+package com.ziine.admin.artwork.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 

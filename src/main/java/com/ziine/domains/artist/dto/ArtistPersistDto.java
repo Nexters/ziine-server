@@ -1,4 +1,4 @@
-package com.ziine.domains.artist.domain.dto;
+package com.ziine.domains.artist.dto;
 
 import com.ziine.domains.artwork.dto.request.ArtworkPersistRequestDto;
 import com.ziine.domains.artwork.dto.request.ArtworkPersistRequestDto.ContactRequestDto;
@@ -25,4 +25,3 @@ public record ArtistPersistDto(
         );
     }
 }
-

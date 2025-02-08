@@ -1,5 +1,6 @@
 package com.ziine.common.exception;
 
+import com.ziine.admin.auth.application.exception.AdminUnauthorizedException;
 import com.ziine.common.dto.ErrorResponseDto;
 import jakarta.annotation.Nullable;
 import jakarta.servlet.http.HttpServletRequest;
@@ -60,21 +61,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 ErrorCode.INTERNAL_SERVER_ERROR.getCode(), ErrorCode.INTERNAL_SERVER_ERROR.getMessage()));
     }
 
-    @ExceptionHandler(BusinessException.class)
-    public ResponseEntity<ErrorResponseDto> handleBusinessException(
-        final BusinessException businessException,
-        final HttpServletRequest httpServletRequest
-    ) {
-        log.info("[BusinessException] URI: {}, Code: {}, Message: {}",
-            httpServletRequest.getRequestURI(), businessException.getErrorCode()
-                .getCode(), businessException.getMessage()
-        );
-
-        return ResponseEntity.status(businessException.getErrorCode()
-                .getHttpStatus())
-            .body(new ErrorResponseDto(businessException.getErrorCode()));
-    }
-
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDto> handleInternalException(
         final Exception exception,
@@ -85,5 +71,32 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
         return ResponseEntity.status(ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus())
             .body(new ErrorResponseDto(ErrorCode.INTERNAL_SERVER_ERROR));
+    }
+
+    @ExceptionHandler(BusinessException.class)
+    public ResponseEntity<ErrorResponseDto> handleBusinessException(
+        final BusinessException businessException,
+        final HttpServletRequest httpServletRequest
+    ) {
+        log.info("[BusinessException] URI: {}, Code: {}",
+            httpServletRequest.getRequestURI(), businessException.getErrorCode());
+
+        return ResponseEntity.status(businessException.getErrorCode()
+                .getHttpStatus())
+            .body(new ErrorResponseDto(businessException.getErrorCode()));
+    }
+
+    @ExceptionHandler(AdminUnauthorizedException.class)
+    public ResponseEntity<ErrorResponseDto> handleAdminUnauthorizedException(
+        final AdminUnauthorizedException adminUnauthorizedException,
+        final HttpServletRequest httpServletRequest
+    ) {
+        log.warn("[AdminUnauthorizedException] URI: {}, Code: {}",
+            httpServletRequest.getRequestURI(), adminUnauthorizedException.getErrorCode()
+                .getCode());
+
+        return ResponseEntity.status(adminUnauthorizedException.getErrorCode()
+                .getHttpStatus())
+            .body(new ErrorResponseDto(adminUnauthorizedException.getErrorCode()));
     }
 }

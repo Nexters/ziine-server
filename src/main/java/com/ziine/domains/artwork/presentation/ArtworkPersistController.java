@@ -15,13 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/artworks")
 @RestController
 public class ArtworkPersistController {
+
     private final ArtworkFacade artworkFacade;
 
     @PostMapping()
     public ResponseEntity<Void> persistArtwork(
         @Valid @RequestBody final ArtworkPersistRequestDto artworkPersistRequestDto
     ) {
-        Long artworkId = artworkFacade.persistArtwork(artworkPersistRequestDto);
-        return ResponseEntity.created(URI.create("/api/v1/artworks/" + artworkId)).build();
+        final Long artworkId = artworkFacade.persistArtwork(artworkPersistRequestDto);
+        return ResponseEntity.created(URI.create("/api/v1/artworks/" + artworkId))
+            .build();
     }
 }

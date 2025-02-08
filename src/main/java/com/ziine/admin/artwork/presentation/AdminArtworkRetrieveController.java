@@ -1,7 +1,7 @@
-package com.ziine.admin.presentation;
+package com.ziine.admin.artwork.presentation;
 
-import com.ziine.admin.application.AdminArtworkRetrieveService;
-import com.ziine.admin.application.dto.response.AdminArtworkRetrieveResponseDto;
+import com.ziine.admin.artwork.application.AdminArtworkRetrieveService;
+import com.ziine.admin.artwork.dto.response.AdminArtworkRetrieveResponseDto;
 import com.ziine.domains.artwork.domain.entity.ArtworkStatus;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

@@ -19,3 +19,6 @@ spring:
         format_sql: true
         query.fail_on_pagination_over_collection_fetch: true
     open-in-view: false
+
+jwt:
+  secret-key: ${JWT_SECRET_KEY}

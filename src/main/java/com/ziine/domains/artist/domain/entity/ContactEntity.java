@@ -40,14 +40,20 @@ public class ContactEntity {
     @JoinColumn(name = "artist_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
     private ArtistEntity artistEntity;
 
+    public ContactEntity(
+        final ContactType type,
+        final String value,
+        final ArtistEntity artistEntity
+    ) {
+        this.type = type;
+        this.value = value;
+        this.artistEntity = artistEntity;
+    }
+
     public static ContactEntity fromContactRequestDto(
         final ContactRequestDto contactRequestDto,
         final ArtistEntity artistEntity
     ) {
-        ContactEntity contactEntity = new ContactEntity();
-        contactEntity.type = contactRequestDto.type();
-        contactEntity.value = contactRequestDto.value();
-        contactEntity.artistEntity = artistEntity;
-        return contactEntity;
+        return new ContactEntity(contactRequestDto.type(), contactRequestDto.value(), artistEntity);
     }
 }
