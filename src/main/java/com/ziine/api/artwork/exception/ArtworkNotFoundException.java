@@ -1,7 +1,7 @@
-package com.ziine.api.artwork.application.exception;
+package com.ziine.api.artwork.exception;
 
-import com.ziine.global.error.application.exception.BusinessException;
 import com.ziine.global.error.domain.ErrorCode;
+import com.ziine.global.error.exception.BusinessException;
 
 public class ArtworkNotFoundException extends BusinessException {
 

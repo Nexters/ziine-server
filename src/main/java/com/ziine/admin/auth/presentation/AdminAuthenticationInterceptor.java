@@ -1,8 +1,8 @@
 package com.ziine.admin.auth.presentation;
 
 import com.ziine.admin.auth.application.AdminContextHolder;
-import com.ziine.admin.auth.application.exception.AdminUnauthorizedException;
 import com.ziine.admin.auth.domain.Admin;
+import com.ziine.admin.auth.exception.AdminUnauthorizedException;
 import com.ziine.global.jwt.application.JwtService;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
