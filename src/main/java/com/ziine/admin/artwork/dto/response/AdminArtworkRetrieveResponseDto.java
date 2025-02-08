@@ -1,9 +1,9 @@
 package com.ziine.admin.artwork.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.ziine.domains.artist.domain.entity.ArtistEntity;
-import com.ziine.domains.artwork.domain.entity.ArtworkEntity;
-import com.ziine.domains.artwork.domain.entity.ArtworkStatus;
+import com.ziine.api.artist.domain.entity.ArtistEntity;
+import com.ziine.api.artwork.domain.entity.ArtworkEntity;
+import com.ziine.api.artwork.domain.entity.ArtworkStatus;
 import java.time.ZonedDateTime;
 
 public record AdminArtworkRetrieveResponseDto(
