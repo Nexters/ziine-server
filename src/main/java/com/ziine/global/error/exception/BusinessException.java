@@ -1,4 +1,4 @@
-package com.ziine.global.error.application.exception;
+package com.ziine.global.error.exception;
 
 import com.ziine.global.error.domain.ErrorCode;
 import lombok.AllArgsConstructor;

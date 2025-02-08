@@ -1,16 +1,16 @@
 package com.ziine.admin.artwork.application;
 
-import com.ziine.admin.artwork.application.exception.AdminNotFoundException;
+import com.ziine.admin.artwork.domain.entity.ArtworkStatusHistoryEntity;
+import com.ziine.admin.artwork.domain.repository.ArtworkStatusHistoryRepository;
 import com.ziine.admin.artwork.dto.request.AdminArtworkRejectRequestDto;
+import com.ziine.admin.artwork.exception.AdminNotFoundException;
 import com.ziine.admin.auth.application.AdminContextHolder;
 import com.ziine.admin.auth.domain.Admin;
-import com.ziine.api.artwork.application.ArtworkStatusMailService;
-import com.ziine.api.artwork.application.exception.ArtworkNotFoundException;
 import com.ziine.api.artwork.domain.entity.ArtworkEntity;
 import com.ziine.api.artwork.domain.entity.ArtworkStatus;
 import com.ziine.api.artwork.domain.entity.ArtworkStatusHistoryEntity;
 import com.ziine.api.artwork.domain.repository.ArtworkRepository;
-import com.ziine.api.artwork.domain.repository.ArtworkStatusHistoryRepository;
+import com.ziine.api.artwork.exception.ArtworkNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

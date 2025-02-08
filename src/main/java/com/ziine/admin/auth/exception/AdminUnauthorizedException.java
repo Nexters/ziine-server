@@ -1,7 +1,7 @@
-package com.ziine.admin.auth.application.exception;
+package com.ziine.admin.auth.exception;
 
-import com.ziine.global.error.application.exception.BusinessException;
 import com.ziine.global.error.domain.ErrorCode;
+import com.ziine.global.error.exception.BusinessException;
 
 public class AdminUnauthorizedException extends BusinessException {
 
