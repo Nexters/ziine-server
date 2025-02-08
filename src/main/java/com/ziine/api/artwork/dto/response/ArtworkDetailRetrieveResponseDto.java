@@ -11,6 +11,7 @@ public record ArtworkDetailRetrieveResponseDto(
     String material,
     String description,
     String artworkImageUrl,
+    String shareUrl,
     ArtistDetailResponseDto artist
 ) {
 
@@ -25,7 +26,12 @@ public record ArtworkDetailRetrieveResponseDto(
             artworkEntity.getMaterial(),
             artworkEntity.getDescription(),
             artworkEntity.getImageUrl(),
+            generateShareUrl(artworkEntity.getId()),
             ArtistDetailResponseDto.fromEntity(artworkEntity.getArtistEntity())
         );
+    }
+
+    private static String generateShareUrl(Long id) {
+        return "https://www.ziine.gallery/artworks/" + id.toString();
     }
 }
