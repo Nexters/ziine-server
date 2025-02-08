@@ -15,7 +15,7 @@ public record ArtworkDetailRetrieveResponseDto(
     ArtistDetailResponseDto artist
 ) {
 
-    public static ArtworkDetailRetrieveResponseDto fromEntity(ArtworkEntity artworkEntity) {
+    public static ArtworkDetailRetrieveResponseDto fromEntity(final ArtworkEntity artworkEntity) {
         return new ArtworkDetailRetrieveResponseDto(
             artworkEntity.getId(),
             artworkEntity.getTitle(),
