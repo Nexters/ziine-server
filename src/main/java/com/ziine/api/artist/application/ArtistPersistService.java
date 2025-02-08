@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
-public class ArtistService {
+public class ArtistPersistService {
 
     private final ArtistRepository artistRepository;
 
