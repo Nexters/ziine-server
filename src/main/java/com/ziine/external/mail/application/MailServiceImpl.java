@@ -1,4 +1,4 @@
-package com.ziine.global.mail.application;
+package com.ziine.external.mail.application;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;

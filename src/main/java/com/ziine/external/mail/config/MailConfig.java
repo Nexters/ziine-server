@@ -1,8 +1,8 @@
-package com.ziine.global.mail.config;
+package com.ziine.external.mail.config;
 
-import com.ziine.global.mail.application.MailService;
-import com.ziine.global.mail.application.MailServiceImpl;
-import com.ziine.global.mail.application.MockMailService;
+import com.ziine.external.mail.application.MailService;
+import com.ziine.external.mail.application.MailServiceImpl;
+import com.ziine.external.mail.application.MockMailService;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

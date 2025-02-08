@@ -1,4 +1,4 @@
-package com.ziine.global.mail.application;
+package com.ziine.external.mail.application;
 
 public interface MailService {
 

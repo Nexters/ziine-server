@@ -2,7 +2,7 @@ package com.ziine.api.artwork.application;
 
 import com.ziine.api.artwork.domain.entity.ArtworkStatus;
 import com.ziine.api.artwork.domain.entity.ArtworkStatusHistoryEntity;
-import com.ziine.global.mail.application.MailService;
+import com.ziine.external.mail.application.MailService;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
