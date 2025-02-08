@@ -28,23 +28,4 @@ public class ArtworkPersistService {
     ) {
         return artworkRepository.save(ArtworkEntity.fromArtworkPersistDto(artworkPersistDto, artistEntity));
     }
-
-    @Transactional(readOnly = true)
-    public ArtworksRetrieveResponseDto retrieveArtworks() {
-        List<ArtworkEntity> artworkEntities = artworkRepository.findByStatusOrderByCreatedAtDesc(
-            ArtworkStatus.APPROVED
-        );
-
-        return new ArtworksRetrieveResponseDto(artworkEntities.stream()
-            .map(ArtworkRetrieveResponseDto::fromEntity)
-            .toList());
-    }
-
-    @Transactional(readOnly = true)
-    public ArtworkDetailRetrieveResponseDto retrieveArtworkDetail(final Long artworkId) {
-        return ArtworkDetailRetrieveResponseDto.fromEntity(
-            artworkRepository.findById(artworkId)
-                .orElseThrow(() -> ArtworkNotFoundException.INSTANCE)
-        );
-    }
 }
