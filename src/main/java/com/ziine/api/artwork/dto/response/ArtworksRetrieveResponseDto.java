@@ -33,7 +33,6 @@ public record ArtworksRetrieveResponseDto(
             }
         }
 
-
         public static ArtworkRetrieveResponseDto fromEntity(final ArtworkEntity artworkEntity) {
             return new ArtworkRetrieveResponseDto(
                 artworkEntity.getId(),
