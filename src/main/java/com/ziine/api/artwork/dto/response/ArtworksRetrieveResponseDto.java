@@ -1,4 +1,4 @@
-package com.ziine.api.artwork.dto;
+package com.ziine.api.artwork.dto.response;
 
 import com.ziine.api.artist.domain.entity.ArtistEntity;
 import com.ziine.api.artwork.domain.entity.ArtworkEntity;
