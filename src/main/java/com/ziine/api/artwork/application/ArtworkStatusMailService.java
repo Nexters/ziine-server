@@ -60,7 +60,7 @@ public class ArtworkStatusMailService {
             default -> throw new IllegalArgumentException("잘못된 상태: " + artworkStatus);  // Business Exception이 아님
         };
 
-        return "mail/" + templateName;
+        return "artwork-" + templateName;
     }
 
     private Map<String, Object> prepareTemplateVariables(final ArtworkStatusHistoryEntity artworkStatusHistoryEntity) {
@@ -71,7 +71,7 @@ public class ArtworkStatusMailService {
         variables.put("artistName", artistName);
 
         if (artworkStatusHistoryEntity.getToStatus() == ArtworkStatus.APPROVED) {
-            final String artworkUrl = "https://ziine.com/artworks/" +
+            final String artworkUrl = "https://www.ziine.gallery/artworks/" +
                 artworkStatusHistoryEntity.getArtworkEntity()
                     .getId();
             variables.put("artworkUrl", artworkUrl);
@@ -87,7 +87,7 @@ public class ArtworkStatusMailService {
     private String generateMailContent(
         final String templateName,
         final Map<String, Object> variables
-    ) {
+    ) {  // TODO. 추후 html 템플릿 수정
         final Context context = new Context();
         context.setVariables(variables);
         return templateEngine.process(templateName, context);
