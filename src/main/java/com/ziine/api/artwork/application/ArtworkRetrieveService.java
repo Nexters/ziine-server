@@ -32,7 +32,7 @@ public class ArtworkRetrieveService {
     @Transactional(readOnly = true)
     public ArtworkDetailRetrieveResponseDto retrieveArtworkDetail(final Long artworkId) {
         return ArtworkDetailRetrieveResponseDto.fromEntity(
-            artworkRepository.findById(artworkId)
+            artworkRepository.findByIdAndStatus(artworkId, ArtworkStatus.APPROVED)
                 .orElseThrow(() -> ArtworkNotFoundException.INSTANCE)
         );
     }
