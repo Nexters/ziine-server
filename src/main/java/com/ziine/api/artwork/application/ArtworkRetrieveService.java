@@ -5,7 +5,6 @@ import com.ziine.api.artwork.domain.entity.ArtworkStatus;
 import com.ziine.api.artwork.domain.repository.ArtworkRepository;
 import com.ziine.api.artwork.dto.response.ArtworkDetailRetrieveResponseDto;
 import com.ziine.api.artwork.dto.response.ArtworksRetrieveResponseDto;
-import com.ziine.api.artwork.dto.response.ArtworksRetrieveResponseDto.ArtworkRetrieveResponseDto;
 import com.ziine.api.artwork.exception.ArtworkNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -20,13 +19,11 @@ public class ArtworkRetrieveService {
 
     @Transactional(readOnly = true)
     public ArtworksRetrieveResponseDto retrieveArtworks() {
-        List<ArtworkEntity> artworkEntities = artworkRepository.findByStatusOrderByCreatedAtDesc(
+        final List<ArtworkEntity> artworkEntities = artworkRepository.findByStatusOrderByCreatedAtDesc(
             ArtworkStatus.APPROVED
         );
 
-        return new ArtworksRetrieveResponseDto(artworkEntities.stream()
-            .map(ArtworkRetrieveResponseDto::fromEntity)
-            .toList());
+        return ArtworksRetrieveResponseDto.fromEntities(artworkEntities);
     }
 
     @Transactional(readOnly = true)

@@ -25,7 +25,7 @@ public record ArtworkDetailRetrieveResponseDto(
                 .getHeight(),
             artworkEntity.getMaterial(),
             artworkEntity.getDescription(),
-            artworkEntity.getImageUrl(),
+            artworkEntity.getArtworkImageUrl(),
             generateShareUrl(artworkEntity.getId()),
             ArtistDetailResponseDto.fromEntity(artworkEntity.getArtistEntity())
         );
