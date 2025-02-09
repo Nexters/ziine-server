@@ -19,16 +19,12 @@ public class ArtworkStatusMailService {
     private final TemplateEngine templateEngine;
 
     public void sendArtworkStatusChangeMail(final ArtworkStatusHistoryEntity artworkStatusHistoryEntity) {
-        final ArtworkStatus toStatus = artworkStatusHistoryEntity.getToStatus();
-        if (toStatus == ArtworkStatus.REQUEST) {
-            return;
-        }
-
         final String recipientEmail = getRecipientEmail(artworkStatusHistoryEntity);
         if (StringUtils.isBlank(recipientEmail)) {
             return;
         }
 
+        final ArtworkStatus toStatus = artworkStatusHistoryEntity.getToStatus();
         final String subject = getSubjectByArtworkStatus(toStatus);
         final String templateName = getTemplateNameByArtworkStatus(toStatus);
         final Map<String, Object> variables = prepareTemplateVariables(artworkStatusHistoryEntity);
