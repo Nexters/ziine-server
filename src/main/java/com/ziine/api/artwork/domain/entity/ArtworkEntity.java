@@ -54,8 +54,7 @@ public class ArtworkEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "artist_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
     private ArtistEntity artistEntity;
-
-
+    
     public ArtworkEntity(
         final String title,
         final String description,

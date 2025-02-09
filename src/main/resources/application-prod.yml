@@ -20,5 +20,18 @@ spring:
         query.fail_on_pagination_over_collection_fetch: true
     open-in-view: false
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ziine.mailbot
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          timeout: 5000
+          starttls:
+            enable: true
+            
 jwt:
   secret-key: ${JWT_SECRET_KEY}

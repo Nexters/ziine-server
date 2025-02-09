@@ -1,7 +1,5 @@
-package com.ziine.admin.artwork.domain.entity;
+package com.ziine.api.artwork.domain.entity;
 
-import com.ziine.api.artwork.domain.entity.ArtworkEntity;
-import com.ziine.api.artwork.domain.entity.ArtworkStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
@@ -52,6 +50,7 @@ public class ArtworkStatusHistoryEntity {
     @Column(nullable = false, updatable = false)
     private ZonedDateTime changedAt;
 
+    // ArtworkEntity에서 ArtworkStatusHistoryEntity를 조회할 일이 없으므로 양방향 관계로 설정하지 않음
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "artwork_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
     private ArtworkEntity artworkEntity;

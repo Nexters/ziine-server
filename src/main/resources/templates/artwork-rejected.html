@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>작품 반려 안내</title>
+</head>
+<body>
+<h2>작품이 반려되었습니다</h2>
+<p>안녕하세요, <strong th:text="${artistName}"></strong>님.</p>
+<p>귀하의 작품이 아쉽게도 반려되었습니다.</p>
+
+<p><strong>반려 사유:</strong></p>
+<blockquote style="
+        background-color: #f8d7da;
+        padding: 10px;
+        border-left: 5px solid #dc3545;
+        color: #721c24;
+    ">
+    <span th:text="${reason}"></span>
+</blockquote>
+
+<p>반려 사유를 확인하고 다시 제출해 주세요.</p>
+</body>
+</html>
