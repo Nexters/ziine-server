@@ -17,5 +17,6 @@ ENV TZ=Asia/Seoul
 ENV PROFILE=${PROFILE}
 
 EXPOSE 8080
+EXPOSE 1010
 
 CMD ["java", "-Dspring.profiles.active=${PROFILE}", "-jar", "/app.jar"]
