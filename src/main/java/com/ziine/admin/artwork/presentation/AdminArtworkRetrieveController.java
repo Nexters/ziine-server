@@ -1,9 +1,8 @@
 package com.ziine.admin.artwork.presentation;
 
 import com.ziine.admin.artwork.application.AdminArtworkRetrieveService;
-import com.ziine.admin.artwork.dto.response.AdminArtworkRetrieveResponseDto;
+import com.ziine.admin.artwork.dto.response.AdminArtworksRetrieveResponseDto;
 import com.ziine.api.artwork.domain.entity.ArtworkStatus;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,11 +18,11 @@ public class AdminArtworkRetrieveController {
     private final AdminArtworkRetrieveService adminArtworkRetrieveService;
 
     @GetMapping
-    public ResponseEntity<List<AdminArtworkRetrieveResponseDto>> retrieveArtworks(
+    public ResponseEntity<AdminArtworksRetrieveResponseDto> retrieveArtworks(
         @RequestParam(required = false) final ArtworkStatus artworkStatus
     ) {
-        final List<AdminArtworkRetrieveResponseDto> adminArtworkRetrieveResponseDtos =
+        final AdminArtworksRetrieveResponseDto adminArtworksRetrieveResponseDto =
             adminArtworkRetrieveService.retrieveArtworksByStatus(artworkStatus);
-        return ResponseEntity.ok(adminArtworkRetrieveResponseDtos);
+        return ResponseEntity.ok(adminArtworksRetrieveResponseDto);
     }
 }

@@ -39,7 +39,7 @@ public class ArtworkEntity extends BaseEntity {
     private String description;
 
     @Column(nullable = false, length = 255)
-    private String imageUrl;
+    private String artworkImageUrl;
 
     @Column(nullable = false, length = 50)
     private String material;
@@ -54,18 +54,18 @@ public class ArtworkEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "artist_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
     private ArtistEntity artistEntity;
-    
+
     public ArtworkEntity(
         final String title,
         final String description,
-        final String imageUrl,
+        final String artworkImageUrl,
         final String material,
         final SizeAttribute sizeAttribute,
         final ArtistEntity artistEntity
     ) {
         this.title = title;
         this.description = description;
-        this.imageUrl = imageUrl;
+        this.artworkImageUrl = artworkImageUrl;
         this.material = material;
         this.sizeAttribute = sizeAttribute;
         this.artistEntity = artistEntity;
