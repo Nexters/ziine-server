@@ -50,6 +50,7 @@ public class ArtworkStatusHistoryEntity {
     @Column(nullable = false, updatable = false)
     private ZonedDateTime changedAt;
 
+    // ArtworkEntity에서 ArtworkStatusHistoryEntity를 조회할 일이 없으므로 양방향 관계로 설정하지 않음
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "artwork_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT), nullable = false)
     private ArtworkEntity artworkEntity;
