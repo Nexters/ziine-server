@@ -55,9 +55,9 @@ public class MagazineEntity extends BaseEntity {
     }
 
     public void addKeywords(final List<KeywordEntity> keywordEntities) {
-        this.keywordEntities.addAll(keywordEntities);
+        keywordEntities.forEach(this::addKeyword);
     }
-    
+
     public void addKeyword(final KeywordEntity keywordEntity) {
         this.keywordEntities.add(keywordEntity);
     }

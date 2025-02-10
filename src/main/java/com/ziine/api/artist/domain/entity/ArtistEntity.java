@@ -59,28 +59,28 @@ public class ArtistEntity {
         return "https://ziine.me/" + artistName + ".png";
     }
 
-    public void addEducations(final List<EducationEntity> educations) {
-        educations.forEach(this::addEducation);
+    public void addEducations(final List<EducationEntity> educationEntities) {
+        educationEntities.forEach(this::addEducation);
     }
 
-    public void addEducation(final EducationEntity education) {
-        this.educationEntities.add(education);
+    public void addEducation(final EducationEntity educationEntity) {
+        this.educationEntities.add(educationEntity);
     }
 
-    public void addExhibitions(final List<ExhibitionEntity> exhibitions) {
-        exhibitions.forEach(this::addExhibition);
+    public void addExhibitions(final List<ExhibitionEntity> exhibitionEntities) {
+        exhibitionEntities.forEach(this::addExhibition);
     }
 
-    public void addExhibition(final ExhibitionEntity exhibition) {
-        this.exhibitionEntities.add(exhibition);
+    public void addExhibition(final ExhibitionEntity exhibitionEntity) {
+        this.exhibitionEntities.add(exhibitionEntity);
     }
 
-    public void addContacts(final List<ContactEntity> contacts) {
-        contacts.forEach(this::addContact);
+    public void addContacts(final List<ContactEntity> contactEntities) {
+        contactEntities.forEach(this::addContact);
     }
 
-    public void addContact(final ContactEntity contact) {
-        this.contactEntities.add(contact);
+    public void addContact(final ContactEntity contactEntity) {
+        this.contactEntities.add(contactEntity);
     }
 
     public static ArtistEntity fromArtistPersistDto(final ArtistPersistDto artistPersistDto) {
