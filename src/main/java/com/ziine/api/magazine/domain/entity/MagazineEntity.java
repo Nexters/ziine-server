@@ -1,5 +1,6 @@
 package com.ziine.api.magazine.domain.entity;
 
+import com.ziine.admin.magazine.dto.request.AdminMagazinePersistRequestDto;
 import com.ziine.global.jpa.domain.entity.BaseEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -60,5 +61,21 @@ public class MagazineEntity extends BaseEntity {
 
     public void addKeyword(final KeywordEntity keywordEntity) {
         this.keywordEntities.add(keywordEntity);
+    }
+
+    public static MagazineEntity fromAdminMagazinePersistRequestDto(final AdminMagazinePersistRequestDto adminMagazinePersistRequestDto) {
+        final MagazineEntity magazineEntity = new MagazineEntity(
+            adminMagazinePersistRequestDto.title(), adminMagazinePersistRequestDto.summary(),
+            adminMagazinePersistRequestDto.thumbnailImageUrl(), adminMagazinePersistRequestDto.content());
+
+        if (adminMagazinePersistRequestDto.keywords() != null) {
+            final List<KeywordEntity> keywordEntities = adminMagazinePersistRequestDto.keywords()
+                .stream()
+                .map(keyword -> new KeywordEntity(keyword, magazineEntity))
+                .toList();
+            magazineEntity.addKeywords(keywordEntities);
+        }
+        
+        return magazineEntity;
     }
 }
