@@ -2,6 +2,7 @@ package com.ziine.api.artwork.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ziine.api.artist.domain.entity.ContactType;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -22,8 +23,10 @@ public record ArtworkPersistRequestDto(
     @NotBlank(message = "Artist name is required")
     String artistName,
     String description,
-    List<String> educations,
+    List<@NotBlank(message = "Education cannot be blank") String> educations,
+    @Valid
     List<ExhibitionRequestDto> exhibitions,
+    @Valid
     List<ContactRequestDto> contacts,
     String email
 ) {
@@ -31,6 +34,7 @@ public record ArtworkPersistRequestDto(
     public record ExhibitionRequestDto(
         @NotBlank(message = "Exhibition title is required")
         String title,
+        @NotNull(message = "Exhibition date is required")
         @JsonFormat(pattern = "yyyy-MM-dd")
         LocalDate exhibitionDate
     ) {

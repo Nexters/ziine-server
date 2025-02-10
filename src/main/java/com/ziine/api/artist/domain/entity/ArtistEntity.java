@@ -1,7 +1,6 @@
 package com.ziine.api.artist.domain.entity;
 
 import com.ziine.api.artist.dto.ArtistPersistDto;
-import com.ziine.api.artwork.domain.entity.ArtworkEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -38,9 +37,6 @@ public class ArtistEntity {
     private String email;
 
     @OneToMany(mappedBy = "artistEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private final List<ArtworkEntity> artworkEntities = new ArrayList<>();
-
-    @OneToMany(mappedBy = "artistEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<EducationEntity> educationEntities = new ArrayList<>();
 
     @OneToMany(mappedBy = "artistEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
@@ -63,21 +59,57 @@ public class ArtistEntity {
         return "https://ziine.me/" + artistName + ".png";
     }
 
-    public static ArtistEntity fromArtistPersistDto(final ArtistPersistDto artistPersistDto) {
-        ArtistEntity artistEntity = new ArtistEntity(artistPersistDto.artistName(), artistPersistDto.email());
+    public void addEducations(final List<EducationEntity> educations) {
+        educations.forEach(this::addEducation);
+    }
 
-        artistPersistDto.educations()
-            .forEach(education ->
-                artistEntity.educationEntities.add(
-                    new EducationEntity(education, artistEntity)));
-        artistPersistDto.exhibitions()
-            .forEach(exhibition ->
-                artistEntity.exhibitionEntities.add(
-                    ExhibitionEntity.fromExhibitionRequestDto(exhibition, artistEntity)));
-        artistPersistDto.contacts()
-            .forEach(contact ->
-                artistEntity.contactEntities.add(
-                    ContactEntity.fromContactRequestDto(contact, artistEntity)));
+    public void addEducation(final EducationEntity education) {
+        this.educationEntities.add(education);
+    }
+
+    public void addExhibitions(final List<ExhibitionEntity> exhibitions) {
+        exhibitions.forEach(this::addExhibition);
+    }
+
+    public void addExhibition(final ExhibitionEntity exhibition) {
+        this.exhibitionEntities.add(exhibition);
+    }
+
+    public void addContacts(final List<ContactEntity> contacts) {
+        contacts.forEach(this::addContact);
+    }
+
+    public void addContact(final ContactEntity contact) {
+        this.contactEntities.add(contact);
+    }
+
+    public static ArtistEntity fromArtistPersistDto(final ArtistPersistDto artistPersistDto) {
+        final ArtistEntity artistEntity = new ArtistEntity(artistPersistDto.artistName(), artistPersistDto.email());
+
+        if (artistPersistDto.educations() != null) {
+            final List<EducationEntity> educationEntities = artistPersistDto.educations()
+                .stream()
+                .map(education -> new EducationEntity(education, artistEntity))
+                .toList();
+            artistEntity.addEducations(educationEntities);
+        }
+
+        if (artistPersistDto.exhibitions() != null) {
+            final List<ExhibitionEntity> exhibitionEntities = artistPersistDto.exhibitions()
+                .stream()
+                .map(exhibition -> ExhibitionEntity.fromExhibitionRequestDto(exhibition, artistEntity))
+                .toList();
+            artistEntity.addExhibitions(exhibitionEntities);
+        }
+
+        if (artistPersistDto.contacts() != null) {
+            final List<ContactEntity> contactEntities = artistPersistDto.contacts()
+                .stream()
+                .map(contact -> ContactEntity.fromContactRequestDto(contact, artistEntity))
+                .toList();
+            artistEntity.addContacts(contactEntities);
+        }
+
         return artistEntity;
     }
 }

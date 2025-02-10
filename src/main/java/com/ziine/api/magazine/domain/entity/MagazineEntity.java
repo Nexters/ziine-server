@@ -46,21 +46,19 @@ public class MagazineEntity extends BaseEntity {
         final String title,
         final String summary,
         final String thumbnailImageUrl,
-        final String content,
-        final List<String> keywords
+        final String content
     ) {
         this.title = title;
         this.summary = summary;
         this.thumbnailImageUrl = thumbnailImageUrl;
         this.content = content;
-        addKeywords(keywords);
     }
 
-    private void addKeywords(final List<String> keywords) {
-        keywords.forEach(this::addKeyword);
+    public void addKeywords(final List<KeywordEntity> keywordEntities) {
+        this.keywordEntities.addAll(keywordEntities);
     }
-
-    private void addKeyword(final String tag) {
-        this.keywordEntities.add(new KeywordEntity(tag, this));
+    
+    public void addKeyword(final KeywordEntity keywordEntity) {
+        this.keywordEntities.add(keywordEntity);
     }
 }
