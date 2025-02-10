@@ -22,6 +22,11 @@ public enum ErrorCode {
      */
     ADMIN_UNAUTHORIZED(3000, "Unauthorized Admin Access", HttpStatus.UNAUTHORIZED),
     ADMIN_NOT_FOUND(3001, "Admin Not Found", HttpStatus.NOT_FOUND),
+
+    /**
+     * 4XXX -> Magazine 에러
+     */
+    MAGAZINE_NOT_FOUND(4001, "Magazine Not Found", HttpStatus.NOT_FOUND),
     ;
 
     private final int code;
