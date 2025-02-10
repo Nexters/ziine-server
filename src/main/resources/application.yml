@@ -7,3 +7,25 @@ spring:
 
   application:
     name: ziine
+
+management:
+  server:
+    port: 1010
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: info, health
+    jmx:
+      exposure:
+        exclude: '*'
+  endpoint:
+    info:
+      enabled: true
+    health:
+      enabled: true
+  health:
+    db:
+      enabled: false
+    mail:
+      enabled: false
