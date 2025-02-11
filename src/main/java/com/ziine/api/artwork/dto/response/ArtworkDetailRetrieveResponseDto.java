@@ -1,5 +1,6 @@
 package com.ziine.api.artwork.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ziine.api.artist.dto.response.ArtistDetailResponseDto;
 import com.ziine.api.artwork.domain.entity.ArtworkEntity;
 import java.time.ZonedDateTime;
@@ -13,7 +14,9 @@ public record ArtworkDetailRetrieveResponseDto(
     String description,
     String artworkImageUrl,
     String shareUrl,
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
     ZonedDateTime createdAt,
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
     ZonedDateTime modifiedAt,
     ArtistDetailResponseDto artist
 ) {
