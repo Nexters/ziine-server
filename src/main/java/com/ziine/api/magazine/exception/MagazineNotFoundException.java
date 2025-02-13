@@ -1,4 +1,4 @@
-package com.ziine.api.magazine.domain.exception;
+package com.ziine.api.magazine.exception;
 
 import com.ziine.global.error.domain.ErrorCode;
 import com.ziine.global.error.exception.BusinessException;
