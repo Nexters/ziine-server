@@ -11,6 +11,15 @@ public record MagazinesRetrieveResponseDto(
     Integer totalCount
 ) {
 
+    public static MagazinesRetrieveResponseDto fromEntities(List<MagazineEntity> magazineEntities) {
+        return new MagazinesRetrieveResponseDto(
+            magazineEntities.stream()
+                .map(MagazineRetrieveDto::fromEntity)
+                .toList(),
+            magazineEntities.size()
+        );
+    }
+
     public record MagazineRetrieveDto(
         Long id,
         String title,

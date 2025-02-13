@@ -19,13 +19,7 @@ public class MagazineRetrieveService {
 
     @Transactional(readOnly = true)
     public MagazinesRetrieveResponseDto retrieveMagazines() {
-        final List<MagazineEntity> magazineEntities = magazineRepository.findAllByOrderByCreatedAtDesc();
-        return new MagazinesRetrieveResponseDto(
-            magazineEntities.stream()
-                .map(MagazineRetrieveDto::fromEntity)
-                .toList(),
-            magazineEntities.size()
-        );
+        return MagazinesRetrieveResponseDto.fromEntities(magazineRepository.findAllByOrderByCreatedAtDesc());
     }
 
     @Transactional(readOnly = true)
