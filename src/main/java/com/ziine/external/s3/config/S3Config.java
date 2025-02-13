@@ -1,0 +1,30 @@
+package com.ziine.external.s3.config;
+
+import com.ziine.external.s3.application.MockS3Service;
+import com.ziine.external.s3.application.S3Service;
+import com.ziine.external.s3.application.S3ServiceImpl;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import software.amazon.awssdk.services.s3.presigner.S3Presigner;
+
+@Configuration
+public class S3Config {
+
+    @Bean
+    @ConditionalOnProperty(name = "spring.s3.mock", havingValue = "true")
+    public S3Service mockS3Service() {
+        return new MockS3Service();
+    }
+
+    @Bean
+    @ConditionalOnProperty(name = "spring.s3.mock", havingValue = "false", matchIfMissing = true)
+    public S3Service s3ServiceImpl(
+        final S3Presigner s3Presigner,
+        @Value("${spring.cloud.aws.s3.bucket}") final String bucketName,
+        @Value("${spring.cloud.aws.cdn.url}") final String cdnUrl
+    ) {
+        return new S3ServiceImpl(s3Presigner, bucketName, cdnUrl);
+    }
+}

@@ -39,6 +39,21 @@ spring:
           starttls:
             enable: true
 
+  cloud:
+    aws:
+      s3:
+        bucket: ${AWS_S3_BUCKET}
+      region:
+        static: ${AWS_REGION}
+      credentials:
+        access-key: ${AWS_ACCESS_KEY}
+        secret-key: ${AWS_SECRET_KEY}
+      cdn:
+        url: ${AWS_CDN_URL}
+
+  s3:
+    mock: false
+
 logging:
   level:
     org.hibernate.orm.jdbc.bind: trace
