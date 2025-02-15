@@ -1,6 +1,7 @@
 package com.ziine.external.s3.application;
 
 import com.ziine.api.presigned.dto.PresignedUrl;
+import com.ziine.global.AWSProperties;
 import com.ziine.global.util.UrlUtil;
 import java.time.Duration;
 import java.util.Map;
@@ -15,17 +16,14 @@ public class S3ServiceImpl implements S3Service {
     private static final Duration SIGNATURE_DURATION = Duration.ofMinutes(1);
 
     private final S3Presigner s3Presigner;
-    private final String bucketName;
-    private final String cdnUrl;
+    private final AWSProperties awsProperties;
 
     public S3ServiceImpl(
         final S3Presigner s3Presigner,
-        final String bucketName,
-        final String cdnUrl
+        final AWSProperties awsProperties
     ) {
         this.s3Presigner = s3Presigner;
-        this.bucketName = bucketName;
-        this.cdnUrl = cdnUrl;
+        this.awsProperties = awsProperties;
     }
 
     public PresignedUrl getPresignedUrl(
@@ -35,7 +33,8 @@ public class S3ServiceImpl implements S3Service {
         final String filePath = String.format("artwork/%s", newFileName);
 
         PutObjectRequest putObjectRequest = PutObjectRequest.builder()
-            .bucket(bucketName)
+            .bucket(awsProperties.getS3()
+                .getBucket())
             .key(filePath)
             .metadata(Map.of(METADATA_KEY_ORIGINAL_NAME, fileName))
             .build();
@@ -48,7 +47,11 @@ public class S3ServiceImpl implements S3Service {
         String presignedUrl = s3Presigner.presignPutObject(preSignRequest)
             .url()
             .toString();
-        String fileUrl = UrlUtil.join(cdnUrl, filePath);
+        String fileUrl = UrlUtil.join(
+            awsProperties.getCdn()
+                .getUrl(),
+            filePath
+        );
 
         return new PresignedUrl(presignedUrl, fileUrl);
     }

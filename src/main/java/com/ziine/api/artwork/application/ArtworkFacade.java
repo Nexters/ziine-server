@@ -8,22 +8,31 @@ import com.ziine.api.artwork.dto.ArtworkPersistDto;
 import com.ziine.api.artwork.dto.response.ArtworkDetailRetrieveResponseDto;
 import com.ziine.api.artwork.dto.response.ArtworksRetrieveResponseDto;
 import com.ziine.api.artwork.dto.request.ArtworkPersistRequestDto;
+import com.ziine.global.AWSProperties;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
+@EnableConfigurationProperties(AWSProperties.class)
 @Service
 public class ArtworkFacade {
 
     private final ArtworkPersistService artworkPersistService;
     private final ArtworkRetrieveService artworkRetrieveService;
     private final ArtistPersistService artistPersistService;
+    private final AWSProperties awsProperties;
 
     @Transactional
     public Long persistArtwork(final ArtworkPersistRequestDto artworkPersistRequestDto) {
         ArtistEntity artistEntity = artistPersistService.persistArtist(
-            ArtistPersistDto.fromArtworkPersistRequestDto(artworkPersistRequestDto));
+            ArtistPersistDto.fromArtworkPersistRequestDto(
+                artworkPersistRequestDto,
+                awsProperties.getCdn()
+                    .getUrl()
+            )
+        );
         ArtworkEntity artworkEntity = artworkPersistService.persistArtwork(
             ArtworkPersistDto.fromArtworkPersistRequestDto(artworkPersistRequestDto), artistEntity);
 
