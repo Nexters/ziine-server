@@ -11,4 +11,13 @@ public enum BackgroundColor {
     PURPLE("#9747FF");
 
     private final String hexColorCode;
+
+    public static String calculateBackgroundColor(int index) {
+        return switch (index % 3) {
+            case 0 -> GREEN.getHexColorCode();
+            case 1 -> ORANGE.getHexColorCode();
+            default -> PURPLE.getHexColorCode();
+        };
+    }
+
 }

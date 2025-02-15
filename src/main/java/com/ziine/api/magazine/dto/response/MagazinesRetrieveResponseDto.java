@@ -1,9 +1,9 @@
 package com.ziine.api.magazine.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ziine.api.magazine.domain.BackgroundColor;
 import com.ziine.api.magazine.domain.entity.KeywordEntity;
 import com.ziine.api.magazine.domain.entity.MagazineEntity;
-import com.ziine.global.util.BackgroundColorCalculator;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -17,7 +17,7 @@ public record MagazinesRetrieveResponseDto(
             magazineEntities.stream()
                 .map(magazineEntity -> MagazineRetrieveDto.fromEntity(
                     magazineEntity,
-                    BackgroundColorCalculator.getBackgroundColor(magazineEntities.indexOf(magazineEntity))
+                    BackgroundColor.calculateBackgroundColor(magazineEntities.indexOf(magazineEntity))
                 ))
                 .toList(),
             magazineEntities.size()
