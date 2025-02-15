@@ -32,21 +32,8 @@ public class S3ServiceImpl implements S3Service {
         final String newFileName = generateFileName(fileName);
         final String filePath = String.format("artwork/%s", newFileName);
 
-        PutObjectRequest putObjectRequest = PutObjectRequest.builder()
-            .bucket(awsProperties.getS3()
-                .getBucket())
-            .key(filePath)
-            .metadata(Map.of(METADATA_KEY_ORIGINAL_NAME, fileName))
-            .build();
-
-        PutObjectPresignRequest preSignRequest = PutObjectPresignRequest.builder()
-            .signatureDuration(SIGNATURE_DURATION)
-            .putObjectRequest(putObjectRequest)
-            .build();
-
-        String presignedUrl = s3Presigner.presignPutObject(preSignRequest)
-            .url()
-            .toString();
+        PutObjectRequest putObjectRequest = buildPutObjectRequest(filePath, fileName);
+        String presignedUrl = createPresignedPutUrl(putObjectRequest);
         String fileUrl = UrlUtil.join(
             awsProperties.getCdn()
                 .getUrl(),
@@ -65,5 +52,28 @@ public class S3ServiceImpl implements S3Service {
             return newFileKey + originalFileName.substring(originalFileName.lastIndexOf("."));
         }
         return newFileKey;
+    }
+
+    private PutObjectRequest buildPutObjectRequest(
+        final String filePath,
+        final String originalFileName
+    ) {
+        return PutObjectRequest.builder()
+            .bucket(awsProperties.getS3()
+                .getBucket())
+            .key(filePath)
+            .metadata(Map.of(METADATA_KEY_ORIGINAL_NAME, originalFileName))
+            .build();
+    }
+
+    private String createPresignedPutUrl(final PutObjectRequest putObjectRequest) {
+        PutObjectPresignRequest preSignRequest = PutObjectPresignRequest.builder()
+            .signatureDuration(SIGNATURE_DURATION)
+            .putObjectRequest(putObjectRequest)
+            .build();
+
+        return s3Presigner.presignPutObject(preSignRequest)
+            .url()
+            .toString();
     }
 }
