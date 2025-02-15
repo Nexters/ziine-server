@@ -6,19 +6,6 @@ spring:
     password: ${DB_PASSWORD}
     hikari:
       auto-commit: false
-
-  cloud:
-    aws:
-      s3:
-        bucket: ${AWS_S3_BUCKET}
-        mock: false
-      region:
-        static: ap-northeast-2
-      credentials:
-        access-key: ${AWS_ACCESS_KEY}
-        secret-key: ${AWS_SECRET_KEY}
-      cdn:
-        url: https://cdn.ziine.gallery/
   
   jpa:
     generate-ddl: false
@@ -45,6 +32,18 @@ spring:
           timeout: 5000
           starttls:
             enable: true
+
+  cloud:
+    aws:
+      region:
+        static: ap-northeast-2
+      s3:
+        bucket: ${AWS_S3_BUCKET}
+      credentials:
+        access-key: ${AWS_ACCESS_KEY}
+        secret-key: ${AWS_SECRET_KEY}
+      cdn:
+        url: https://cdn.ziine.gallery/
 
 jwt:
   secret-key: ${JWT_SECRET_KEY}
