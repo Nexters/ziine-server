@@ -13,12 +13,12 @@ spring:
         bucket: ${AWS_S3_BUCKET}
         mock: false
       region:
-        static: ${AWS_REGION}
+        static: ap-northeast-2
       credentials:
         access-key: ${AWS_ACCESS_KEY}
         secret-key: ${AWS_SECRET_KEY}
       cdn:
-        url: ${AWS_CDN_URL}
+        url: https://cdn.ziine.gallery/
   
   jpa:
     generate-ddl: false
