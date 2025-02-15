@@ -1,4 +1,4 @@
-package com.ziine.api.magazine.domain.entity;
+package com.ziine.api.magazine.domain;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
