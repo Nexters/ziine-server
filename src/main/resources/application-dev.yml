@@ -39,6 +39,21 @@ spring:
           starttls:
             enable: true
 
+  cloud:
+    aws:
+      s3:
+        bucket: ${AWS_S3_BUCKET}
+      region:
+        static: ap-northeast-2
+      credentials:
+        access-key: ${AWS_ACCESS_KEY}
+        secret-key: ${AWS_SECRET_KEY}
+      cdn:
+        url: https://cdn.ziine.gallery/
+
+  s3:
+    mock: false
+
 logging:
   level:
     org.hibernate.orm.jdbc.bind: trace
