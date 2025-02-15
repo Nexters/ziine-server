@@ -16,10 +16,14 @@ public enum BackgroundColor {
     private final String hexColorCode;
 
     public static BackgroundColor calculateBackgroundColor(int index) {
-        return switch (index % 3) {
-            case 0 -> GREEN;
-            case 1 -> ORANGE;
-            default -> PURPLE;
+        int colorIndex = (index + index / 5) % 5;
+
+        return switch (colorIndex) {
+            case 0 -> BackgroundColor.GREEN;
+            case 1 -> BackgroundColor.ORANGE;
+            case 2 -> BackgroundColor.PINK;
+            case 3 -> BackgroundColor.SKYBLUE;
+            default -> BackgroundColor.PURPLE;
         };
     }
 
