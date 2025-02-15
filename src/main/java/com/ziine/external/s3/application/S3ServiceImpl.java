@@ -63,8 +63,7 @@ public class S3ServiceImpl implements S3Service {
 
         if (hasExtension) {
             return newFileKey + originalFileName.substring(originalFileName.lastIndexOf("."));
-        } else {
-            return newFileKey;
         }
+        return newFileKey;
     }
 }
