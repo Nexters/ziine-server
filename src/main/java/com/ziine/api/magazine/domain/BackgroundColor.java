@@ -16,9 +16,8 @@ public enum BackgroundColor {
     private final String hexColorCode;
 
     public static BackgroundColor calculateBackgroundColor(int index) {
-        int colorIndex = (index + index / 5) % 5;
 
-        return switch (colorIndex) {
+        return switch (index % 5) {
             case 0 -> BackgroundColor.GREEN;
             case 1 -> BackgroundColor.ORANGE;
             case 2 -> BackgroundColor.PINK;
