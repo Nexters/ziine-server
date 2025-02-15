@@ -13,11 +13,11 @@ public enum BackgroundColor {
 
     private final String hexColorCode;
 
-    public static String calculateBackgroundColor(int index) {
+    public static BackgroundColor calculateBackgroundColor(int index) {
         return switch (index % 3) {
-            case 0 -> GREEN.getHexColorCode();
-            case 1 -> ORANGE.getHexColorCode();
-            default -> PURPLE.getHexColorCode();
+            case 0 -> GREEN;
+            case 1 -> ORANGE;
+            default -> PURPLE;
         };
     }
 

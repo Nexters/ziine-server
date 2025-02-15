@@ -39,7 +39,7 @@ public record MagazinesRetrieveResponseDto(
 
         public static MagazineRetrieveDto fromEntity(
             MagazineEntity magazineEntity,
-            String backgroundColor
+            BackgroundColor backgroundColor
         ) {
             return new MagazineRetrieveDto(
                 magazineEntity.getId(),
@@ -50,7 +50,7 @@ public record MagazinesRetrieveResponseDto(
                     .stream()
                     .map(KeywordEntity::getTag)
                     .toList(),
-                backgroundColor,
+                backgroundColor.getHexColorCode(),
                 magazineEntity.getCreatedAt(),
                 magazineEntity.getModifiedAt()
             );
