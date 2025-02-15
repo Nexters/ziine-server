@@ -1,5 +1,6 @@
 package com.ziine.api.artist.dto;
 
+import com.ziine.api.artist.domain.ArtistProfileImage;
 import com.ziine.api.artwork.dto.request.ArtworkPersistRequestDto;
 import com.ziine.api.artwork.dto.request.ArtworkPersistRequestDto.ContactRequestDto;
 import com.ziine.api.artwork.dto.request.ArtworkPersistRequestDto.ExhibitionRequestDto;
@@ -10,18 +11,21 @@ public record ArtistPersistDto(
     List<String> educations,
     List<ExhibitionRequestDto> exhibitions,
     List<ContactRequestDto> contacts,
-    String email
+    String email,
+    String profileImageUrl
 ) {
 
     public static ArtistPersistDto fromArtworkPersistRequestDto(
-        final ArtworkPersistRequestDto artworkPersistRequestDto
+        final ArtworkPersistRequestDto artworkPersistRequestDto,
+        final String cdnUrl
     ) {
         return new ArtistPersistDto(
             artworkPersistRequestDto.artistName(),
             artworkPersistRequestDto.educations(),
             artworkPersistRequestDto.exhibitions(),
             artworkPersistRequestDto.contacts(),
-            artworkPersistRequestDto.email()
+            artworkPersistRequestDto.email(),
+            ArtistProfileImage.generateRandomProfileImage(cdnUrl)
         );
     }
 }

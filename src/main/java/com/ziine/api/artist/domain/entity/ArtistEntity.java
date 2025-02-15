@@ -48,16 +48,11 @@ public class ArtistEntity {
     public ArtistEntity(
         final String name,
         final String email,
-        final String cdnUrl
+        final String profileImageUrl
     ) {
         this.name = name;
-        this.profileImageUrl = generateRandomProfileImageUrl(cdnUrl);
+        this.profileImageUrl = profileImageUrl;
         this.email = email;
-    }
-
-    private String generateRandomProfileImageUrl(final String cdnUrl) {
-        int randomIndex = (int) (Math.random() * 3) + 1;
-        return cdnUrl + "artist/profile_images/profile_image_" + randomIndex + ".png";
     }
 
     public void addEducations(final List<EducationEntity> educationEntities) {
@@ -85,11 +80,13 @@ public class ArtistEntity {
     }
 
     public static ArtistEntity fromArtistPersistDto(
-        final ArtistPersistDto artistPersistDto,
-        String cdnUrl
+        final ArtistPersistDto artistPersistDto
     ) {
-        final ArtistEntity artistEntity = new ArtistEntity(artistPersistDto.artistName(), artistPersistDto.email(),
-            cdnUrl);
+        final ArtistEntity artistEntity = new ArtistEntity(
+            artistPersistDto.artistName(),
+            artistPersistDto.email(),
+            artistPersistDto.profileImageUrl()
+        );
 
         if (artistPersistDto.educations() != null) {
             final List<EducationEntity> educationEntities = artistPersistDto.educations()
