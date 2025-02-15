@@ -67,14 +67,14 @@ public class ArtworkStatusMailService {
         variables.put("artistName", artistName);
 
         if (artworkStatusHistoryEntity.getToStatus() == ArtworkStatus.APPROVED) {
-            final String artworkUrl = "https://www.ziine.gallery/artworks/" +
+            final String artworkUrl = "https://www.ziine.gallery/artwork/" +
                 artworkStatusHistoryEntity.getArtworkEntity()
                     .getId();
             variables.put("artworkUrl", artworkUrl);
         }
 
         if (artworkStatusHistoryEntity.getToStatus() == ArtworkStatus.REJECTED) {
-            variables.put("reason", artworkStatusHistoryEntity.getRejectionReason());
+            variables.put("rejectionReason", artworkStatusHistoryEntity.getRejectionReason());
         }
 
         return variables;
