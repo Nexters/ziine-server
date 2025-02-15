@@ -1,6 +1,7 @@
 package com.ziine.api.magazine.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ziine.api.magazine.domain.BackgroundColor;
 import com.ziine.api.magazine.domain.entity.KeywordEntity;
 import com.ziine.api.magazine.domain.entity.MagazineEntity;
 import java.time.ZonedDateTime;
@@ -14,7 +15,10 @@ public record MagazinesRetrieveResponseDto(
     public static MagazinesRetrieveResponseDto fromEntities(List<MagazineEntity> magazineEntities) {
         return new MagazinesRetrieveResponseDto(
             magazineEntities.stream()
-                .map(MagazineRetrieveDto::fromEntity)
+                .map(magazineEntity -> MagazineRetrieveDto.fromEntity(
+                    magazineEntity,
+                    BackgroundColor.calculateBackgroundColor(magazineEntities.indexOf(magazineEntity))
+                ))
                 .toList(),
             magazineEntities.size()
         );
@@ -26,13 +30,17 @@ public record MagazinesRetrieveResponseDto(
         String summary,
         String thumbnailImageUrl,
         List<String> keywords,
+        String backgroundColor,
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
         ZonedDateTime createdAt,
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
         ZonedDateTime modifiedAt
     ) {
 
-        public static MagazineRetrieveDto fromEntity(MagazineEntity magazineEntity) {
+        public static MagazineRetrieveDto fromEntity(
+            MagazineEntity magazineEntity,
+            BackgroundColor backgroundColor
+        ) {
             return new MagazineRetrieveDto(
                 magazineEntity.getId(),
                 magazineEntity.getTitle(),
@@ -42,6 +50,7 @@ public record MagazinesRetrieveResponseDto(
                     .stream()
                     .map(KeywordEntity::getTag)
                     .toList(),
+                backgroundColor.getHexColorCode(),
                 magazineEntity.getCreatedAt(),
                 magazineEntity.getModifiedAt()
             );
