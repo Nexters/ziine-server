@@ -4,21 +4,35 @@
     <meta charset="UTF-8">
     <title>작품 반려 안내</title>
 </head>
-<body>
-<h2>작품이 반려되었습니다</h2>
-<p>안녕하세요, <strong th:text="${artistName}"></strong>님.</p>
-<p>귀하의 작품이 아쉽게도 반려되었습니다.</p>
+<body style="margin: 0; padding: 0; background-color: #121212; display: flex; justify-content: center; align-items: center; height: 100vh;">
+<div style="width: 600px; padding: 48px; background: #1E1E1E; border-radius: 24px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px;">
 
-<p><strong>반려 사유:</strong></p>
-<blockquote style="
-        background-color: #f8d7da;
-        padding: 10px;
-        border-left: 5px solid #dc3545;
-        color: #721c24;
-    ">
-    <span th:text="${reason}"></span>
-</blockquote>
+    <div style="position: relative;">
+        <img src="https://ziine-bucket.s3.ap-northeast-2.amazonaws.com/assets/ziine-logo.png" alt="Ziine 로고"
+             width="90px"/>
+    </div>
 
-<p>반려 사유를 확인하고 다시 제출해 주세요.</p>
+    <div style="color: white; font-size: 36px; font-family: Pretendard, sans-serif; font-weight: 700; line-height: 1.6; position: relative;">
+        작품이 반려되었습니다.
+    </div>
+
+    <div style="color: white; font-size: 18px; font-family: Pretendard, sans-serif; font-weight: 600; line-height: 1.6; position: relative;">
+        안녕하세요, <span th:text="${artistName}" style="font-weight: 700;">{artistName}</span>님,<br/>
+        귀하의 작품이 아쉽게도 반려되었습니다.<br/>
+        반려 사유를 확인하고 다시 제출해 주세요.
+    </div>
+
+    <div style="color: #FF571E; font-size: 18px; font-weight: 700; margin-top: 8px;">
+        반려 사유:
+    </div>
+
+    <div style="width: 100%; max-width: 570px; background-color: #333333; padding: 15px; border-radius: 12px; position: relative;">
+        <div style="color: white; font-size: 16px; font-weight: 500; line-height: 1.6;">
+            <span th:text="${rejectionReason}">{rejectionReason}</span>
+        </div>
+    </div>
+
+</div>
+
 </body>
 </html>
