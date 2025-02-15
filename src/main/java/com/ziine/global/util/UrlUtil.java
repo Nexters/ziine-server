@@ -15,15 +15,8 @@ public class UrlUtil {
 
         for (int i = 0; i < paths.length; i++) {
             String path = paths[i];
-
-            if (i > 0 && path.startsWith("/")) {
-                path = path.substring(1);
-            }
-
-            if (i < paths.length - 1 && path.endsWith("/")) {
-                path = path.substring(0, path.length() - 1);
-            }
-
+            path = removeLeadingSlashIfNotFirst(path, i);
+            path = removeTrailingSlashIfNotLast(path, i, paths.length);
             sb.append(path);
             if (i < paths.length - 1) {
                 sb.append("/");
@@ -32,4 +25,26 @@ public class UrlUtil {
 
         return sb.toString();
     }
+
+    private static String removeLeadingSlashIfNotFirst(
+        String path,
+        int index
+    ) {
+        if (index > 0 && path.startsWith("/")) {
+            return path.substring(1);
+        }
+        return path;
+    }
+
+    private static String removeTrailingSlashIfNotLast(
+        String path,
+        int index,
+        int totalCount
+    ) {
+        if (index < totalCount - 1 && path.endsWith("/")) {
+            return path.substring(0, path.length() - 1);
+        }
+        return path;
+    }
+
 }
