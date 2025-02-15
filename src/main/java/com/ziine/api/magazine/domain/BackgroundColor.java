@@ -6,10 +6,12 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum BackgroundColor {
-    
-    GREEN("#1FC350"),
+
     ORANGE("#FF571E"),
-    PURPLE("#9747FF");
+    PINK("#FF7777"),
+    SKYBLUE("#84CEFF"),
+    PURPLE("#6A99FF"),
+    GREEN("#18C07A");
 
     private final String hexColorCode;
 
