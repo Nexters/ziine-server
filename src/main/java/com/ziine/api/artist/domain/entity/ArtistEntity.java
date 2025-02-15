@@ -47,16 +47,17 @@ public class ArtistEntity {
 
     public ArtistEntity(
         final String name,
-        final String email
+        final String email,
+        final String cdnUrl
     ) {
         this.name = name;
-        this.profileImageUrl = generateRandomProfileImageUrl(name);
+        this.profileImageUrl = generateRandomProfileImageUrl(cdnUrl);
         this.email = email;
     }
 
-    private String generateRandomProfileImageUrl(final String artistName) {
-        // TODO: 랜덤 이미지 로직 추가 필요
-        return "https://ziine.me/" + artistName + ".png";
+    private String generateRandomProfileImageUrl(final String cdnUrl) {
+        int randomIndex = (int) (Math.random() * 3) + 1;
+        return cdnUrl + "artist/profile_images/profile_image_" + randomIndex + ".png";
     }
 
     public void addEducations(final List<EducationEntity> educationEntities) {
@@ -83,8 +84,12 @@ public class ArtistEntity {
         this.contactEntities.add(contactEntity);
     }
 
-    public static ArtistEntity fromArtistPersistDto(final ArtistPersistDto artistPersistDto) {
-        final ArtistEntity artistEntity = new ArtistEntity(artistPersistDto.artistName(), artistPersistDto.email());
+    public static ArtistEntity fromArtistPersistDto(
+        final ArtistPersistDto artistPersistDto,
+        String cdnUrl
+    ) {
+        final ArtistEntity artistEntity = new ArtistEntity(artistPersistDto.artistName(), artistPersistDto.email(),
+            cdnUrl);
 
         if (artistPersistDto.educations() != null) {
             final List<EducationEntity> educationEntities = artistPersistDto.educations()
