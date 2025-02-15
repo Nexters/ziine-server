@@ -16,13 +16,13 @@ import software.amazon.awssdk.services.s3.presigner.S3Presigner;
 public class S3Config {
 
     @Bean
-    @ConditionalOnProperty(name = "spring.s3.mock", havingValue = "true")
+    @ConditionalOnProperty(name = "spring.cloud.aws.s3.mock", havingValue = "true")
     public S3Service mockS3Service() {
         return new MockS3Service();
     }
 
     @Bean
-    @ConditionalOnProperty(name = "spring.s3.mock", havingValue = "false", matchIfMissing = true)
+    @ConditionalOnProperty(name = "spring.cloud.aws.s3.mock", havingValue = "false", matchIfMissing = true)
     public S3Service s3ServiceImpl(
         final S3Presigner s3Presigner,
         @Qualifier("AWSProperties") final AWSProperties awsProperties

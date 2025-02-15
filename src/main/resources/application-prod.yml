@@ -11,6 +11,7 @@ spring:
     aws:
       s3:
         bucket: ${AWS_S3_BUCKET}
+        mock: false
       region:
         static: ${AWS_REGION}
       credentials:
@@ -18,9 +19,6 @@ spring:
         secret-key: ${AWS_SECRET_KEY}
       cdn:
         url: ${AWS_CDN_URL}
-
-  s3:
-    mock: false
   
   jpa:
     generate-ddl: false

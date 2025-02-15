@@ -45,14 +45,12 @@ spring:
         static: ap-northeast-2
       s3:
         bucket: ${AWS_S3_BUCKET}
+        mock: true
       credentials:
         access-key: ${AWS_ACCESS_KEY}
         secret-key: ${AWS_SECRET_KEY}
       cdn:
         url: https://cdn.ziine.gallery/
-
-  s3:
-    mock: true
 
 logging:
   level:
