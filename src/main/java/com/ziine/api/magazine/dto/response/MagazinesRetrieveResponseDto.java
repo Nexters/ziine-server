@@ -13,14 +13,18 @@ public record MagazinesRetrieveResponseDto(
 ) {
 
     public static MagazinesRetrieveResponseDto fromEntities(List<MagazineEntity> magazineEntities) {
+        int magazineSize = magazineEntities.size();
         return new MagazinesRetrieveResponseDto(
             magazineEntities.stream()
                 .map(magazineEntity -> MagazineRetrieveDto.fromEntity(
                     magazineEntity,
-                    BackgroundColor.calculateBackgroundColor(magazineEntities.indexOf(magazineEntity))
+                    BackgroundColor.calculateBackgroundColor(
+                        magazineEntities.indexOf(magazineEntity),
+                        magazineSize
+                    )
                 ))
                 .toList(),
-            magazineEntities.size()
+            magazineSize
         );
     }
 
