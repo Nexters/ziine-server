@@ -15,14 +15,19 @@ public enum BackgroundColor {
 
     private final String hexColorCode;
 
-    public static BackgroundColor calculateBackgroundColor(int index) {
+    public static BackgroundColor calculateBackgroundColor(
+        int index,
+        int magazineSize
+    ) {
+        boolean isShiftNeeded = ((magazineSize - 1) % BackgroundColor.values().length == 0);
+        int shift = (isShiftNeeded && index == magazineSize - 1) ? 1 : 0;
 
-        return switch (index % 5) {
-            case 0 -> BackgroundColor.GREEN;
-            case 1 -> BackgroundColor.ORANGE;
-            case 2 -> BackgroundColor.PINK;
-            case 3 -> BackgroundColor.SKYBLUE;
-            default -> BackgroundColor.PURPLE;
+        return switch ((index + shift) % 5) {
+            case 0 -> GREEN;
+            case 1 -> ORANGE;
+            case 2 -> PINK;
+            case 3 -> SKYBLUE;
+            default -> PURPLE;
         };
     }
 
