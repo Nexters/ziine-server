@@ -16,11 +16,11 @@ public enum BackgroundColor {
     private final String hexColorCode;
 
     public static BackgroundColor calculateBackgroundColor(
-        int index,
-        int magazineSize
+        final int index,
+        final int magazineSize
     ) {
-        boolean isShiftNeeded = ((magazineSize - 1) % BackgroundColor.values().length == 0);
-        int shift = (isShiftNeeded && index == magazineSize - 1) ? 1 : 0;
+        final boolean isShiftNeeded = ((magazineSize - 1) % BackgroundColor.values().length == 0);
+        final int shift = (isShiftNeeded && index == magazineSize - 1) ? 1 : 0;
 
         return switch ((index + shift) % 5) {
             case 0 -> GREEN;
