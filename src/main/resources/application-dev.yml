@@ -26,7 +26,6 @@ spring:
     open-in-view: false
 
   mail:
-    mock: true
     host: smtp.gmail.com
     port: 587
     username: ziine.mailbot
