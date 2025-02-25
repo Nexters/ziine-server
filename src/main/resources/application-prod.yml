@@ -7,6 +7,10 @@ spring:
   jpa:
     generate-ddl: false
     show-sql: false
+    properties:
+      hibernate:
+        detector:
+          enabled: true
 
 jwt:
   secret-key: ${JWT_KEY}
