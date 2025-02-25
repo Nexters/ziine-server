@@ -5,12 +5,13 @@ spring:
     password: ${DB_PASSWORD}
 
   jpa:
-    generate-ddl: false
-    show-sql: false
     properties:
       hibernate:
         detector:
           enabled: true
-
+          threshold: 2
+          level: warn
+          exclude:
+            
 jwt:
   secret-key: ${JWT_KEY}

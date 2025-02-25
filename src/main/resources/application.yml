@@ -49,9 +49,6 @@ spring:
       cdn:
         url: https://cdn.ziine.gallery/
 
-jwt:
-  secret-key: ${JWT_SECRET_KEY}
-
 management:
   server:
     port: 1010
