@@ -1,15 +1,15 @@
-FROM eclipse-temurin:21 AS builder
+FROM amazoncorretto:21 AS builder
 
 COPY build.gradle settings.gradle gradlew ./
 COPY gradle gradle
 
-RUN chmod +x ./gradlew && ./gradlew dependencies
+RUN chmod +x ./gradlew && ./gradlew dependencies --no-daemon
 
 COPY src src
 
-RUN ./gradlew bootJar
+RUN ./gradlew bootJar --no-daemon
 
-FROM eclipse-temurin:21-jre AS runtime
+FROM amazoncorretto:21-alpine AS runtime
 
 COPY --from=builder /build/libs/*.jar /app.jar
 
