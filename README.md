@@ -1,9 +1,8 @@
 <img width="1920" alt="표지" src="https://github.com/user-attachments/assets/37664fdd-675c-4030-946a-d437b2384f39" />
-<img width="1920" alt="UI_01" src="https://github.com/user-attachments/assets/6633901a-9afa-4239-8240-20112b31a61d" />
-<img width="1920" alt="UI_01-1" src="https://github.com/user-attachments/assets/98bf6b77-40d3-434f-b352-7bdf30d79354" />
-<img width="1920" alt="UI_01-2" src="https://github.com/user-attachments/assets/4034b494-2fa0-427d-93a1-c08ced5fd9ca" />
-<img width="1920" alt="UI_01-3" src="https://github.com/user-attachments/assets/32d957cf-78fe-4d71-b46a-18e3fbd5962d" />
-
+<img width="1920" alt="UI_01" src="https://github.com/user-attachments/assets/61ccd746-0d0f-4a53-8868-cc98a1d34b09" />
+<img width="1920" alt="UI_01-1" src="https://github.com/user-attachments/assets/ae331d58-31c0-4518-969c-e75ac911bd1a" />
+<img width="1920" alt="UI_01-2" src="https://github.com/user-attachments/assets/f86e24d3-99cb-4187-a5d9-1f04c7d882ae" />
+<img width="1920" alt="UI_01-3" src="https://github.com/user-attachments/assets/95f3f800-7bf7-44e9-a612-525584344c5b" />
 
 # Contributors
 
