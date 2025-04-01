@@ -10,10 +10,7 @@ spring:
       hibernate:
         detector:
           enabled: true
-          threshold: 2
-          level: warn
-          exclude:
-            
+
 jwt:
   secret-key: clxksmsduftlaglekfflsekkkkkkkkkkkkkk
 
