@@ -40,6 +40,6 @@ public record ArtworkDetailRetrieveResponseDto(
     }
 
     private static String generateShareUrl(Long id) {
-        return "https://www.ziine.gallery/artworks/" + id.toString();
+        return "https://www.ziine.gallery/artwork/" + id.toString();
     }
 }

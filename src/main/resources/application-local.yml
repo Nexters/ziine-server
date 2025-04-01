@@ -1,60 +1,27 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:33306/ziine?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
     username: root
     password: password
-    hikari:
-      auto-commit: false
 
   jpa:
-    generate-ddl: true
-    hibernate:
-      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
-        order_inserts: true
-        order_updates: true
-        format_sql: true
-        query.fail_on_pagination_over_collection_fetch: true
         detector:
           enabled: true
-          threshold: 2
-          level: warn
-          exclude:
-    open-in-view: false
+
+jwt:
+  secret-key: clxksmsduftlaglekfflsekkkkkkkkkkkkkk
 
   mail:
     mock: true
-    host: smtp.gmail.com
-    port: 587
-    username: ziine.mailbot
-    password: ${MAIL_PASSWORD}
-    properties:
-      mail:
-        smtp:
-          auth: true
-          timeout: 5000
-          starttls:
-            enable: true
 
   cloud:
     aws:
-      region:
-        static: ap-northeast-2
       s3:
-        bucket: ${AWS_S3_BUCKET}
         mock: true
-      credentials:
-        access-key: ${AWS_ACCESS_KEY}
-        secret-key: ${AWS_SECRET_KEY}
-      cdn:
-        url: https://cdn.ziine.gallery/
 
 logging:
   level:
     org.hibernate.orm.jdbc.bind: trace
-
-jwt:
-  secret-key: clxksmsduftlaglekfflsekkkkkkkkkkkkkk
